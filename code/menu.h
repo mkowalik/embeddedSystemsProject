@@ -16,12 +16,10 @@
 #define up_dist 7
 #define down_dist 8
 
-void displayMenu();
-uint16_t toMph(uint16_t kph_val);
-void text1(uint16_t value, uint8_t unit, char * text);
-void text2(uint16_t value, char * text);
+void displayMenu(uint32_t time, uint8_t button);
 
-
+void refreshSpeed(uint32_t time);
+void pushedButtonEvent(uint8_t button);
 
 
 

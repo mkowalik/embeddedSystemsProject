@@ -61,10 +61,10 @@ uint8_t isPressed(){
 	if ((row&0x0F)!=0x0F || (column&0xF0)!=0xF0) return 1;
 	return 0;
 }
+static volatile uint16_t valueToDisplay = 0;
 
-int getButtonValue(void* args){
+void getButtonValue(void* args){
 	if (isPressed()){					//read button value only if it's pressed
-		return read();
+		valueToDisplay = read();
 	}
-	else return 0;
 }

@@ -62,8 +62,9 @@ uint8_t isPressed(){
 	return 0;
 }
 
-void getButtonValue(void* args){
+int getButtonValue(void* args){
 	if (isPressed()){					//read button value only if it's pressed
-		valueToDisplay = read();
+		return read();
 	}
+	else return 0;
 }
