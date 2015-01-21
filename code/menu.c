@@ -33,27 +33,15 @@ void text1(uint16_t value, uint8_t unit, char * text){
 		sprintf(text, "%u.%u  kph %u mph", value/100, value%100, rightarrow);
 	}		
 }
-<<<<<<< HEAD
 void text2(uint16_t value, char * text){
 	if(value%100<10) sprintf(text, "distance: %u %u.0%u %u", leftarrow, value/100, value%100, rightarrow);
 	else sprintf(text, "distance: %u %u.%u %u", leftarrow, value/100, value%100, rightarrow);
 	
-=======
 
-void text2(uint16_t value, char * text){
-	if(value%100<10) sprintf(text, "distance: %u %u.0%u %u", leftarrow, value/100, value%100, rightarrow);
-	else sprintf(text, "distance: %u %u.%u %u", leftarrow, value/100, value%100, rightarrow);
->>>>>>> 9d5a5a97b7d38c722997027fe37dbe58ed0abfb7
-}
 
 void displayMenu(){
 	char text_1[40];
 	char text_2[40];
-<<<<<<< HEAD
-	
-=======
-	LCD_GoTo('0','0');
->>>>>>> 9d5a5a97b7d38c722997027fe37dbe58ed0abfb7
 	//reading velocity_value velocity_value = read();
 	tempButtonVal = getButtonValue(NULL);
 	if(tempButtonVal == kph_button || tempButtonVal == mph_button) actual_unit = tempButtonVal;
