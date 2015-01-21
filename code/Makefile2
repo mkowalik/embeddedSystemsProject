@@ -1,0 +1,22 @@
+main.hex: main.elf
+	avr-objcopy -O ihex -R .eeprom main.elf main.hex
+main.elf: main.o HD44780.o keyboard.o menu.o taskManager.o
+	avr-gcc -mmcu=atmega8 main.o HD44780.o keyboard.o menu.o taskManager.o - main.elf
+	
+main.o: main.c
+	avr-gcc -mmcu=atmega32 -Os -c -DF_CPU=16000000UL main.c -o main.o
+
+HD44780.o: HD44780.c HD44780.h
+	avr-gcc -mmcu=atmega32 -Os -c -DF_CPU=16000000UL HD44780.c -o HD44780.o
+
+keyboard.o: keyboard.h keyboard.c
+	avr-gcc -mmcu=atmega32 -Os -c -DF_CPU=16000000UL keyboard.c -o keyboard.o
+	
+menu.o: menu.h menu.c
+	avr-gcc -mmcu=atmega32 -Os -c -DF_CPU=16000000UL menu.c -o menu.o
+	
+taskManager.o: taskManager.h taskManager.c
+	avr-gcc -mmcu=atmega32 -Os -c -DF_CPU=16000000UL taskManager.c -o taskManager.o
+	
+write: main.hex
+	avrdude -p atmega8 -c usbasp -U flash:w:main.hex
