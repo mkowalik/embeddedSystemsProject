@@ -25,27 +25,27 @@ uint16_t toMph(uint16_t kph_val){
 char * text1(uint16_t value, uint8_t unit){
 	char text[40];
 	if(unit == kph_button){
-		sprintf(text, "%u.%u %s kph   mph", value/100, value%100, rigtharrow);
+		sprintf(text, "%u.%u %u kph   mph", value/100, value%100, rightarrow);
 	}
 	else{
 		value = toMph(value);
-		sprintf(text, "%u.%u  kph %s mph", value/100, value%100, rigtharrow);
+		sprintf(text, "%u.%u  kph %u mph", value/100, value%100, rightarrow);
 	}
 	return * text;		
 }
 char * text2(uint16_t value){
 	char text[40];
-	sprintf(text, "distance: %s %u.%u %s", leftarrow, value/100, value%100, rightarrow);
+	sprintf(text, "distance: %u %u.%u %u", leftarrow, value/100, value%100, rightarrow);
 	return * text;
 }
 
 void displayMenu(){
-	LCD_GoTO(0,0);
+	LCD_GoTO('0','0');
 	//reading velocity_value velocity_value = read();
 	tempButtonVal = getButtonValue(null);
 	if(tempButtonVal == kph_button || tempButtonVal == mph_button) actual_unit = tempButtonVal;
 	LCD_WriteText(text1(velocity_value, actual_unit));
-	LCD_GoTo(0,1);
+	LCD_GoTo('0','1');
 	if(tempButtonVal == up_dist || tempButtonVal == down_dist) distChange = tempButtonVal;
 	if(distChange == up_dist){
 		dist_value += 1;
@@ -55,7 +55,7 @@ void displayMenu(){
 		dist_value -= 1;
 		distChange = 0;
 	}
-	text2 = text2(dist_value);
-	LCD_WriteText(text2);
+	
+	LCD_WriteText(text2(dist_value));
 
 }
