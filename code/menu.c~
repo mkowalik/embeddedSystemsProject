@@ -55,7 +55,7 @@ void displayMenu(){
 		dist_value -= 1;
 		distChange = 0;
 	}
-	
-	LCD_WriteText(text2(dist_value));
+	text2 = text2(dist_value);
+	LCD_WriteText(text2);
 
 }
