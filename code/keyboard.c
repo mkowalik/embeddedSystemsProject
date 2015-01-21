@@ -6,6 +6,8 @@
 #include <avr/io.h>
 #include "keyboard.h"
 
+static volatile uint16_t valueToDisplay;
+
 static uint8_t getRowFromRaw(uint8_t rawRow){
 	rawRow = ~rawRow;				//negating value to obtain 1 in place of pressed key
 	rawRow &= 0x0F;					//to obtain 0's on first 4 bits

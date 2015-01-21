@@ -3,9 +3,9 @@
 #include <stdlib.h>
 
 void TSOPinit(){
-    MCUCR |= (_PV(ISC11) | _PV(ISC10)); //rising edge of INT1 generates interrupt request
-    MCUCR |= (_PV(OSC01) | _PV(ISC00)); //rising edge of INT0 generates interrupt request
-    GICR |= (_PV(INT1) | _PV(INT0)); //external interrupt request 0 and 1 enable
+    MCUCR |= (_BV(ISC11) | _BV(ISC10)); //rising edge of INT1 generates interrupt request
+    MCUCR |= (_BV(ISC01) | _BV(ISC00)); //rising edge of INT0 generates interrupt request
+    GICR |= (_BV(INT1) | _BV(INT0)); //external interrupt request 0 and 1 enable
 }
 
 static void (*int1fun)() = NULL;

@@ -13,7 +13,6 @@ uint16_t dist_value = 1000; //1000/100 = 10cm
 uint16_t velocity_value = 100;
 uint8_t tempButtonVal = 0;
 uint8_t actual_unit = kph_button;
-uint16_t velocity_to_diplay = velocity_value;
 char rightarrow = 0b01111110;
 char leftarrow = 0b01111111;
 uint8_t distChange = 0;
