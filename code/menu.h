@@ -15,12 +15,11 @@
 #define mph_button 4
 #define up_dist 7
 #define down_dist 8
-#define null (void*)0
 
 void displayMenu();
 uint16_t toMph(uint16_t kph_val);
-char * text1(uint16_t value, uint8_t unit);
-char * text2(uint16_t value);
+void text1(uint16_t value, uint8_t unitm, char * text);
+void text2(uint16_t value, char * text);
 
 
 

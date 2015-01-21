@@ -7,6 +7,8 @@
 
 #include <avr/io.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "HD44780.h"
 #include "menu.h"
  
 uint16_t dist_value = 1000; //1000/100 = 10cm
@@ -22,7 +24,7 @@ uint16_t toMph(uint16_t kph_val){
 	return 62 * kph_val / 100;
 }
 
-void * text1(uint16_t value, uint8_t unit, char * text){
+void text1(uint16_t value, uint8_t unit, char * text){
 	if(unit == kph_button){
 		sprintf(text, "%u.%u %u kph   mph", value/100, value%100, rightarrow);
 	}
@@ -31,18 +33,18 @@ void * text1(uint16_t value, uint8_t unit, char * text){
 		sprintf(text, "%u.%u  kph %u mph", value/100, value%100, rightarrow);
 	}		
 }
-void * text2(uint16_t value, char * text){
+
+void text2(uint16_t value, char * text){
 	if(value%100<10) sprintf(text, "distance: %u %u.0%u %u", leftarrow, value/100, value%100, rightarrow);
 	else sprintf(text, "distance: %u %u.%u %u", leftarrow, value/100, value%100, rightarrow);
-	return * text;
 }
 
 void displayMenu(){
 	char text_1[40];
 	char text_2[40];
-	LCD_GoTO('0','0');
+	LCD_GoTo('0','0');
 	//reading velocity_value velocity_value = read();
-	tempButtonVal = getButtonValue(null);
+	tempButtonVal = getButtonValue(NULL);
 	if(tempButtonVal == kph_button || tempButtonVal == mph_button) actual_unit = tempButtonVal;
 	text1(velocity_value, actual_unit, text_1)
 	LCD_WriteText(text_1);
