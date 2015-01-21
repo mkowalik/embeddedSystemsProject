@@ -45,7 +45,7 @@ void displayMenu(){
 	//reading velocity_value velocity_value = read();
 	tempButtonVal = getButtonValue(NULL);
 	if(tempButtonVal == kph_button || tempButtonVal == mph_button) actual_unit = tempButtonVal;
-	text1(velocity_value, actual_unit, text_1)
+	text1(velocity_value, actual_unit, text_1);
 	
 	if(tempButtonVal == up_dist || tempButtonVal == down_dist) distChange = tempButtonVal;
 	if(distChange == up_dist){
