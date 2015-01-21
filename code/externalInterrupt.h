@@ -2,9 +2,9 @@
 #include <avr/interrupt.h>
 #include <stdlib.h>
 
-void TSOPinit();
+void externalIntInit();
 
-void TSOP1funRegister(void (*foo) ());
+void externalInt1funRegister(void (*foo) ());
 
-void TSOP2funRegister(void (*foo) ());
+void externalInt2funRegister(void (*foo) ());
 
