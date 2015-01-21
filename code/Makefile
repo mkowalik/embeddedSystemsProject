@@ -11,7 +11,7 @@ externalInterrupt.o: externalInterrupt.c externalInterrupt.h
 	avr-gcc -std=c99 -mmcu=atmega32 -Os -c -DF_CPU=16000000UL externalInterrupt.c -o externalInterrupt.o
 
 irLED.o: irLED.c irLED.h
-	avr-gcc -std=c99 -mmcu=atmega32 -0s -c -DF_CPU=16000000UL irLED.c -o irLED.o
+	avr-gcc -std=c99 -mmcu=atmega32 -Os -c -DF_CPU=16000000UL irLED.c -o irLED.o
 
 HD44780.o: HD44780.c HD44780.h
 	avr-gcc -std=c99 -mmcu=atmega32 -Os -c -DF_CPU=16000000UL HD44780.c -o HD44780.o
