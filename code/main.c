@@ -44,7 +44,7 @@ void incrementTimeTask(void* args){
 
 void checkButtonTask(void* args){
     if (!isPressed()) return;
-    pressedButtonEvent(read());
+    pushedButtonEvent(read());
 }
 
 int8_t measurementToDisplay = 0;

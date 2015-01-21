@@ -23,6 +23,6 @@ uint8_t read();
 
 uint8_t isPressed();
 
-int getButtonValue(void* args);
+void getButtonValue(void* args);//CZY TUTAJ MA BYC VOID???
 
 #endif /* KEYBOARD_H_ */

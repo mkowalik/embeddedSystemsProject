@@ -8,6 +8,6 @@
 
 void changeDisplay();
 
-void setValueToDisplay(uint32_t value, uint8_t digitsAfterDot){
+void setValueToDisplay(uint32_t value, uint8_t digitsAfterDot);
 
 #endif
