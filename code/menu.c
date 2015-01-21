@@ -37,7 +37,7 @@ void text2(uint16_t value, char * text){
 	if(value%100<10) sprintf(text, "distance: %u %u.0%u %u", leftarrow, value/100, value%100, rightarrow);
 	else sprintf(text, "distance: %u %u.%u %u", leftarrow, value/100, value%100, rightarrow);
 	
-
+}
 
 void displayMenu(){
 	char text_1[40];
