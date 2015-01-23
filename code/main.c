@@ -4,7 +4,6 @@
 #include "taskManager.h"
 #include "menu.h"
 #include "externalInterrupt.h"
-#include "irLED.h"
 #include "segmentDisplay.h"
 #include "keyboard.h"
 
@@ -14,15 +13,27 @@ ISR(TIMER0_COMP_vect){
 }
 */
 /**
-* Setup atmega32's clock for interrupts every 1ms
+* Setup atmega32's timer0 for interrupts every 1ms
 */
-void setupTimer(){
+void setupTimer0(){
 
 	TCCR0 |= (1<<WGM01) | (0<<WGM00);	// set clock type as CTC
 	OCR0 = 250;							// set Output Compare Register - together with prescaler this will give us
 	// interrupt every 1ms
 	TIMSK |= (1<<OCIE0);				// set interrupts co compare
 	TCCR0 |= (1<<CS00) | (1<<CS01 );	// set clock prescaler at 64*250 = 16,000; 16MHz * 16,000 = 1KHZ;
+
+}
+
+void setupTimer2(){
+    
+    TCCR2 |= (1<<WGM21) | (0<<WGM20); //set clock type as CTC
+    TCCR2 |= (0<<COM21) | (0<<COM20); //set toggle OC2 on compare match
+    TCCR2 |= (1<<CS22) | (1<<CS21) | (0<<CS20); //set clock prescaler at 256
+
+    OCR2 = 149; //value to compare
+    //no interrupts needed
+    //on OC2 pin should be generated wave with freqency 38kHz
 
 }
 
@@ -71,11 +82,11 @@ int main(void)
 {
 	LCD_Initalize();
 
-	irLEDinit();
 	externalIntInit();
 	segmentDisplayInit();
 	
-	setupTimer();
+	setupTimer0();
+	setupTimer2();
     
 	externalInt1funRegister(TSOP1interrupt);
 	externalInt2funRegister(TSOP2interrupt);
@@ -84,8 +95,7 @@ int main(void)
 	addTask(2, 10, incrementTimeTask, NULL);
 	addTask(3, 40, checkButtonTask, NULL);
 	addTask(4, 20, TSOPCheckTask, NULL);
-	//addTask(changeIr1LedState);
-	//addTask(changeIr2LedState);
+
 	sei();								// turn interrupts on
 	execute();
 }
