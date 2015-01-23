@@ -30,4 +30,6 @@ write: main.hex
 	avrdude -p atmega8 -c usbasp -U flash:w:main.hex
 
 clean: 
-	rm *.o
+	rm -f *.o
+	rm -f *.hex
+	rm -f *.elf
