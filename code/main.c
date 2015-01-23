@@ -7,14 +7,18 @@
 #include "segmentDisplay.h"
 #include "keyboard.h"
 
-/*
+/**
+ * Timer0 interrupt handler - for task manager. Called every 1ms.
+ * */
+
 ISR(TIMER0_COMP_vect){
 	schedule();
 }
-*/
+
 /**
-* Setup atmega32's timer0 for interrupts every 1ms
-*/
+ * Setup Atmega32's Timer0 (8-bit) for interrupts every 1ms
+ * */
+
 void setupTimer0(){
 
 	TCCR0 |= (1<<WGM01) | (0<<WGM00);	// set clock type as CTC
@@ -25,15 +29,18 @@ void setupTimer0(){
 
 }
 
+/**
+ * Setup Atmega32's Timer2 (8-bit) for generating quadrature signal with frequency 38kHz
+ * */
+
 void setupTimer2(){
     
     TCCR2 |= (1<<WGM21) | (0<<WGM20); //set clock type as CTC
     TCCR2 |= (0<<COM21) | (0<<COM20); //set toggle OC2 on compare match
     TCCR2 |= (1<<CS22) | (1<<CS21) | (0<<CS20); //set clock prescaler at 256
 
-    OCR2 = 149; //value to compare
+    OCR2 = 149; //value to compare, value on OC2 should be toggled with frequenct 19kHz
     //no interrupts needed
-    //on OC2 pin should be generated wave with freqency 38kHz
 
 }
 
@@ -44,14 +51,26 @@ static int32_t stopTimeTSOP = 0;
 
 uint8_t freezeDisplayTime = 1;
 
+/**
+ * This function is called in task manager every 4ms which changes actual displaying segment display (multiplexing) from set of 4 segment displays.
+ * */
+
 void changeDisplayTask(void* args){
     changeDisplay();
 }
+
+/**
+ * This function is called in task manager every 1ms which increments actual working controller time, and if needed calls library from segment display to change displayung value.
+ * */
 
 void incrementTimeTask(void* args){
     actualTime++;
     if (!freezeDisplayTime) setValueToDisplay(actualTime - startTimeTSOP, 2);
 }
+
+/**
+ * This function is called in task manager verey 40ms which checks if it's pushed any button and calling function from menu library.
+ * */
 
 void checkButtonTask(void* args){
     if (!isPressed()) return;
@@ -60,11 +79,19 @@ void checkButtonTask(void* args){
 
 int8_t measurementToDisplay = 0;
 
+/**
+ * This function is called every 20ms in task manager, checks if it's measured any time between cuting IR gates (marked in bool variable measurementToDisplay in external interrupts occuring when IR barier is cuted).
+ * */
+
 void TSOPCheckTask(void* args){
     if (!measurementToDisplay) return;
     refreshSpeed(stopTimeTSOP - startTimeTSOP);
     measurementToDisplay = 0;
 }
+
+/**
+ * This function is registered to call when external interrupt 1 occours. Starts measuring time between cuting IR bariers - sets startTimeTSOP variable to actual time.
+ * */
 
 void TSOP1interrupt(){
     startTimeTSOP = actualTime;
@@ -72,11 +99,19 @@ void TSOP1interrupt(){
     freezeDisplayTime = 0;
 }
 
+/**
+ * This function is registered to call when external interrupt 1 occours. Stops measuring time between cuting IR bariers - sets stopTimeTSOP variable to actual time.
+ * */
+
 void TSOP2interrupt(){
     stopTimeTSOP = actualTime;
     freezeDisplayTime = 1;
     measurementToDisplay = 1;
 }
+
+/**
+ * Main function.
+ * */
 
 int main(void)
 {
