@@ -1,9 +1,3 @@
-/*
-* task_manager.h
-*
-*/
-
-
 #ifndef TASK_MANAGER_H_
 #define TASK_MANAGER_H_
 
@@ -28,7 +22,7 @@ void addTask(uint8_t numberOfTask, uint8_t interval, void (*foo)(void*), void* a
 */
 void changeTask(uint8_t numberOfTask, void (*foo)(void*), void* args);
 /**
-* This function contains never-ending loop which executes tasks intended to execute by function schedule. Function firstly checks tasks with the highest priority. If task counter (of executions of schedule function) is bigger than interval value, then task is executed. This function should be placed at the end of main function of aplication.
+* This function contains never-ending loop which executes tasks intended to execute by function schedule. Function firstly checks tasks with the highest priority. If task counter (of executions of schedule function) is bigger than interval value, then task is executed. This function should be placed at the end of main function of aplication. This function executes cli() macro - turining off every interrupts for while.
 */
 void execute();
 /**

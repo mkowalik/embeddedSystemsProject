@@ -1,8 +1,3 @@
-/*
-* task_manager.c
-*
-*/
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "taskManager.h"

@@ -1,6 +1,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "taskManager.h"
 #include "menu.h"
 #include "externalInterrupt.h"
@@ -30,7 +31,7 @@ void setupTimer0(){
 }
 
 /**
- * Setup Atmega32's Timer2 (8-bit) for generating quadrature signal with frequency 38kHz
+ * Setup Atmega32's Timer2 (8-bit) for generating quadrature signal with frequency 38kHz on OC2 pin.
  * */
 
 void setupTimer2(){
@@ -44,12 +45,12 @@ void setupTimer2(){
 
 }
 
-static int32_t actualTime = 0;
+static uint32_t actualTime = 0;
 
-static int32_t startTimeTSOP = 0;
-static int32_t stopTimeTSOP = 0;
+static uint32_t startTimeTSOP = 0;
+static uint32_t stopTimeTSOP = 0;
 
-uint8_t freezeDisplayTime = 1;
+bool freezeDisplayTime = true;
 
 /**
  * This function is called in task manager every 4ms which changes actual displaying segment display (multiplexing) from set of 4 segment displays.
@@ -77,7 +78,7 @@ void checkButtonTask(void* args){
     pushedButtonEvent(read());
 }
 
-int8_t measurementToDisplay = 0;
+bool measurementToDisplay = false;
 
 /**
  * This function is called every 20ms in task manager, checks if it's measured any time between cuting IR gates (marked in bool variable measurementToDisplay in external interrupts occuring when IR barier is cuted).
@@ -86,7 +87,7 @@ int8_t measurementToDisplay = 0;
 void TSOPCheckTask(void* args){
     if (!measurementToDisplay) return;
     refreshSpeed(stopTimeTSOP - startTimeTSOP);
-    measurementToDisplay = 0;
+    measurementToDisplay = false;
 }
 
 /**
@@ -96,7 +97,7 @@ void TSOPCheckTask(void* args){
 void TSOP1interrupt(){
     startTimeTSOP = actualTime;
     stopTimeTSOP = 0;
-    freezeDisplayTime = 0;
+    freezeDisplayTime = false;
 }
 
 /**
@@ -105,8 +106,8 @@ void TSOP1interrupt(){
 
 void TSOP2interrupt(){
     stopTimeTSOP = actualTime;
-    freezeDisplayTime = 1;
-    measurementToDisplay = 1;
+    freezeDisplayTime = true;
+    measurementToDisplay = true;
 }
 
 /**

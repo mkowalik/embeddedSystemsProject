@@ -1,12 +1,13 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "segmentDisplay.h"
 
 static uint8_t DIGIT[10] = {0b11000000, 0b11111001, 0b10100100, 0b10110000, 0b10011001, 0b10010010, 0b10000010, 0b11111000, 0b10000000, 0b10010000};
 static uint8_t DOT = 0b01111111;
 
-static void displayDigit(uint8_t displayNr, uint8_t dot, uint8_t value){
+static void displayDigit(uint8_t displayNr, bool dot, uint8_t value){
     if (displayNr > 3) return;
 
     value %= 10;
@@ -34,8 +35,8 @@ static uint8_t currentDisplay = 0;
 void changeDisplay(){
     currentDisplay++;
 
-    uint8_t dot = 0;
-    if (currentDisplay>0 && currentDisplay==currentDigitsAfterDot) dot = 1;
+    bool dot = false;
+    if (currentDisplay>0 && currentDisplay==currentDigitsAfterDot) dot = true;
 
 	if (currentDisplay==0) displayDigit(currentDisplay, dot, currentValue/10);
 	else if (currentDisplay==1) displayDigit(currentDisplay, dot, currentValue/100);
