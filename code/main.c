@@ -73,6 +73,7 @@ int main(void)
 
 	irLEDinit();
 	externalIntInit();
+	segmentDisplayInit();
 	
 	setupTimer();
     

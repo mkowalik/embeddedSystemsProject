@@ -39,7 +39,6 @@ static void text1Error(uint8_t unit, char * text){
 		sprintf(text, "Error %u kph   mph", rightarrow);
 	}
 	else{
-		value = toMph(value);
 		sprintf(text, "Error  kph %u mph", rightarrow);
 	}		
 }

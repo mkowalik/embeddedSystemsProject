@@ -1,11 +1,14 @@
 main.hex: main.elf
 	avr-objcopy -O ihex -R .eeprom main.elf main.hex
 
-main.elf: main.o externalInterrupt.o irLED.o HD44780.o keyboard.o menu.o taskManager.o 
-	avr-gcc -std=c99 -mmcu=atmega32 main.o externalInterrupt.o irLED.o HD44780.o keyboard.o menu.o taskManager.o -o main.elf
+main.elf: main.o externalInterrupt.o irLED.o HD44780.o keyboard.o menu.o taskManager.o segmentDisplay.o
+	avr-gcc -std=c99 -mmcu=atmega32 main.o externalInterrupt.o irLED.o HD44780.o keyboard.o menu.o taskManager.o segmentDisplay.o -o main.elf
 
 main.o: main.c
 	avr-gcc -std=c99 -mmcu=atmega32 -Os -c -DF_CPU=16000000UL main.c -o main.o
+
+segmentDisplay.o: segmentDisplay.c segmentDisplay.h
+	avr-gcc -std=c99 -mmcu=atmega32 -Os -c -DF_CPU=16000000UL segmentDisplay.c -o segmentDisplay.o
 
 externalInterrupt.o: externalInterrupt.c externalInterrupt.h
 	avr-gcc -std=c99 -mmcu=atmega32 -Os -c -DF_CPU=16000000UL externalInterrupt.c -o externalInterrupt.o
