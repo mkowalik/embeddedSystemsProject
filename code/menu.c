@@ -18,6 +18,7 @@ uint8_t actual_unit = kph_button;
 static uint8_t rightarrow = 0b01111110;
 static uint8_t leftarrow = 0b01111111;
 uint8_t distChange = 0;
+uint32_t actual_time = 100;
 
 
 static uint16_t toMph(uint16_t kph_val){
@@ -50,11 +51,12 @@ static void text2(uint16_t value, char * text){
 }
 
 void refreshSpeed(uint32_t time){
-	displayMenu(time, 0);
+	actual_time = time;
+	displayMenu(actual_time, 0);
 }
 
 void pushedButtonEvent(uint8_t button){
-	displayMenu(0, button);
+	displayMenu(actual_time, button);
 }
 
 void displayMenu(uint32_t time, uint8_t button){
@@ -62,6 +64,20 @@ void displayMenu(uint32_t time, uint8_t button){
 	char text_2[40];
 	
 	tempButtonVal = button;
+	
+	if(tempButtonVal == up_dist || tempButtonVal == down_dist){
+		distChange = tempButtonVal;
+		if(distChange == up_dist){
+			dist_value += 1;
+			distChange = 0;
+		}
+		else if(distChange == down_dist){
+			dist_value -= 1;
+			distChange = 0;
+		}
+	}
+	
+	text2(dist_value,text_2);
 	
 	if(time>0){
 		velocity_value = dist_value / time * 2777/100;
@@ -75,18 +91,7 @@ void displayMenu(uint32_t time, uint8_t button){
 	}
 	
 	
-	if(tempButtonVal == up_dist || tempButtonVal == down_dist){
-		distChange = tempButtonVal;
-		if(distChange == up_dist){
-			dist_value += 1;
-			distChange = 0;
-		}
-		else if(distChange == down_dist){
-			dist_value -= 1;
-			distChange = 0;
-		}
-	}
-	text2(dist_value,text_2);
+	
 	
 	LCD_GoTo('0','0');
 	LCD_WriteText(text_1);
