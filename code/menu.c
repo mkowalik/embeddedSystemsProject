@@ -80,7 +80,7 @@ void displayMenu(uint32_t time, uint8_t button){
 	text2(dist_value,text_2);
 	
 	if(time>0){
-		velocity_value = dist_value / time * 2777/100;
+		velocity_value = dist_value / time * 2777;
 		if(tempButtonVal == kph_button || tempButtonVal == mph_button) actual_unit = tempButtonVal;
 		text1(velocity_value, actual_unit, text_1);
 	}
