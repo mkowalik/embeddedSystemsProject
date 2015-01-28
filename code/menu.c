@@ -27,26 +27,26 @@ static uint16_t toMph(uint16_t kph_val){
 
 static void text1(uint16_t value, uint8_t unit, char * text){
 	if(unit == kph_button){
-		sprintf(text, "%u.%u %u kph   mph", value/100, value%100, rightarrow);
+		sprintf(text, "%u.%u %c kph   mph", value/100, value%100, rightarrow);
 	}
 	else{
 		value = toMph(value);
-		sprintf(text, "%u.%u  kph %u mph", value/100, value%100, rightarrow);
+		sprintf(text, "%u.%u  kph %c mph", value/100, value%100, rightarrow);
 	}		
 }
 
 static void text1Error(uint8_t unit, char * text){
 	if(unit == kph_button){
-		sprintf(text, "Error %u kph   mph", rightarrow);
+		sprintf(text, "Error %c kph   mph", rightarrow);
 	}
 	else{
-		sprintf(text, "Error  kph %u mph", rightarrow);
+		sprintf(text, "Error  kph %c mph", rightarrow);
 	}		
 }
 
 static void text2(uint16_t value, char * text){
-	if(value%100<10) sprintf(text, "distance: %u %u.0%u %u", leftarrow, value/100, value%100, rightarrow);
-	else sprintf(text, "distance: %u %u.%u %u", leftarrow, value/100, value%100, rightarrow);
+	if(value%100<10) sprintf(text, "distance: %c %u.0%u %c", leftarrow, value/100, value%100, rightarrow);
+	else sprintf(text, "distance: %c %u.%u %c", leftarrow, value/100, value%100, rightarrow);
 	
 }
 
@@ -93,9 +93,9 @@ void displayMenu(uint32_t time, uint8_t button){
 	
 	
 	
-	LCD_GoTo('0','0');
+	LCD_GoTo(0,0);
 	LCD_WriteText(text_1);
-	LCD_GoTo('0','1');
+	LCD_GoTo(0,1);
 	LCD_WriteText(text_2);
 
 }

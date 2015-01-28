@@ -116,12 +116,8 @@ void TSOP2interrupt(){
 
 int main(void)
 {
-    DDRB = 0xFF;
-    DDRC = 0xFF;
-    PORTB = 0x00;
-    PORTC = 0x00;
-    while(1);
 	LCD_Initalize();
+    LCD_WriteText("Photocell v0.001");
 
 	externalIntInit();
 	segmentDisplayInit();
@@ -131,11 +127,14 @@ int main(void)
     
 	externalInt1funRegister(TSOP1interrupt);
 	externalInt2funRegister(TSOP2interrupt);
-
+	
 	addTask(1, 4, changeDisplayTask, NULL);
 	addTask(2, 10, incrementTimeTask, NULL);
-	addTask(3, 40, checkButtonTask, NULL);
+	//addTask(3, 40, checkButtonTask, NULL);
 	addTask(4, 20, TSOPCheckTask, NULL);
+	
+	_delay_ms(1000);
+	LCD_Clear();
 
 	sei();								// turn interrupts on
 	execute();
