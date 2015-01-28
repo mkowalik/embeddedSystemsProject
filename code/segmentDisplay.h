@@ -5,10 +5,10 @@
 #ifndef SEGMENT_DISPLAY_H_
 #define SEGMENT_DISPLAY_H_
 
-#define DISPLAY_PORT PORTA
-#define DISPLAY_DDR DDRA
-#define DISPLAY_GRD_PORT PORTB
-#define DISPLAY_GRD_DDR DDRB
+#define DISPLAY_PORT PORTB
+#define DISPLAY_DDR DDRB
+#define DISPLAY_GRD_PORT PORTC
+#define DISPLAY_GRD_DDR DDRC
 
 /**
  * Initialisation for segment display.

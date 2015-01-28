@@ -27,7 +27,7 @@ taskManager.o: taskManager.h taskManager.c
 
 
 write: main.hex
-	avrdude -p atmega8 -c usbasp -U flash:w:main.hex
+	avrdude -p atmega32 -c usbasp -U flash:w:main.hex
 
 clean: 
 	rm -f *.o

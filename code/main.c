@@ -116,6 +116,11 @@ void TSOP2interrupt(){
 
 int main(void)
 {
+    DDRB = 0xFF;
+    DDRC = 0xFF;
+    PORTB = 0x00;
+    PORTC = 0x00;
+    while(1);
 	LCD_Initalize();
 
 	externalIntInit();
