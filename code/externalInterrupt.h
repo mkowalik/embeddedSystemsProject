@@ -6,9 +6,9 @@
 #define EXTERNAL_INTERRUPT_H_
 
 /**
- * Initialisation function for handling external interrupts on rising edges.
+ * Initialisation function for handling external interrupts on rising edges. Constuctor takes pointer to int which says actual time of working microcontroller in ms.
  * */
-void externalIntInit();
+void externalIntInit(int32_t* actualTime);
 
 /**
  * Function for registaring function which should be called when external interrupt 1 occours.

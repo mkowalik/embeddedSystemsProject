@@ -121,7 +121,7 @@ int main(void)
 	LCD_Initalize();
     LCD_WriteText("Photocell v0.001");
 
-	externalIntInit();
+	externalIntInit(&actualTime);
 	segmentDisplayInit();
 	
 	setupTimer0();
