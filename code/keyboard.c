@@ -76,6 +76,7 @@ uint8_t read(){
 
 uint8_t isPressed(){
 	if ((KB_PIN & 0xF0) != 0xF0) return 1;
+	return 0;
 }
 static volatile uint16_t valueToDisplay = 0;
 

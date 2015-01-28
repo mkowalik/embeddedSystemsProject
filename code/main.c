@@ -26,7 +26,7 @@ void setupTimer0(){
 	OCR0 = 125;							// set Output Compare Register - together with prescaler this will give us
 	// interrupt every 1ms
 	TIMSK |= (1<<OCIE0);				// set interrupts co compare
-	TCCR0 |= (1<<CS00) | (1<<CS01 );	// set clock prescaler at 64*250 = 16,000; 16MHz * 16,000 = 1KHZ;
+	TCCR0 |= (1<<CS00) | (1<<CS01 );	// set clock prescaler 64. Frequency 1kHz
 
 }
 
@@ -137,10 +137,12 @@ int main(void)
 	addTask(3, 40, checkButtonTask, NULL);
 	addTask(4, 20, TSOPCheckTask, NULL);
 	
+	setValueToDisplay(17, 1);
+	
 	_delay_ms(1000);
 	LCD_Clear();
 
-	displayMenu(0,0);
+	//displayMenu(0,0);
 	
 	sei();								// turn interrupts on
 	execute();
