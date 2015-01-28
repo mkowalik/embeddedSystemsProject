@@ -118,6 +118,8 @@ int main(void)
 {
 	LCD_Initalize();
     LCD_WriteText("Photocell v0.001");
+	keyboardInit();
+	
 
 	externalIntInit();
 	segmentDisplayInit();
@@ -130,12 +132,14 @@ int main(void)
 	
 	addTask(1, 4, changeDisplayTask, NULL);
 	addTask(2, 10, incrementTimeTask, NULL);
-	//addTask(3, 40, checkButtonTask, NULL);
+	addTask(3, 40, checkButtonTask, NULL);
 	addTask(4, 20, TSOPCheckTask, NULL);
 	
 	_delay_ms(1000);
 	LCD_Clear();
 
+	displayMenu(0,0);
+	
 	sei();								// turn interrupts on
 	execute();
 }

@@ -11,10 +11,10 @@
 #include "HD44780.h"
 #include "keyboard.h"
 
-#define kph_button 3
-#define mph_button 4
-#define up_dist 7
-#define down_dist 8
+#define kph_button 1
+#define mph_button 2
+#define up_dist 4
+#define down_dist 3
 
 void displayMenu(uint32_t time, uint8_t button);
 
