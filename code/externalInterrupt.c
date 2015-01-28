@@ -10,23 +10,25 @@ void externalIntInit(){
     PORTD |= (_BV(PD2) | _BV(PD1));
 }
 
+static void (*int0fun)() = NULL;
 static void (*int1fun)() = NULL;
-static void (*int2fun)() = NULL;
+
+void externalInt0funRegister(void (*foo) ()){
+    int0fun = foo;
+}
 
 void externalInt1funRegister(void (*foo) ()){
     int1fun = foo;
 }
 
-void externalInt2funRegister(void (*foo) ()){
-    int2fun = foo;
-}
-
 ISR(INT0_vect){
-    int1fun();
+    int0fun();
     DDRD |= _BV(PD6);
-    PORTD &= (~(_BV(PD6)));
+    PORTD ^= (_BV(PD6));
 }
 
 ISR(INT1_vect){
-    int2fun();
+    int1fun();
+    DDRD |= _BV(PD5);
+    PORTD ^= (_BV(PD5));
 }

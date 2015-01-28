@@ -23,7 +23,7 @@ ISR(TIMER0_COMP_vect){
 void setupTimer0(){
 
 	TCCR0 |= (1<<WGM01) | (0<<WGM00);	// set clock type as CTC
-	OCR0 = 250;							// set Output Compare Register - together with prescaler this will give us
+	OCR0 = 125;							// set Output Compare Register - together with prescaler this will give us
 	// interrupt every 1ms
 	TIMSK |= (1<<OCIE0);				// set interrupts co compare
 	TCCR0 |= (1<<CS00) | (1<<CS01 );	// set clock prescaler at 64*250 = 16,000; 16MHz * 16,000 = 1KHZ;
@@ -37,11 +37,13 @@ void setupTimer0(){
 void setupTimer2(){
     
     TCCR2 |= (1<<WGM21) | (0<<WGM20); //set clock type as CTC
-    TCCR2 |= (0<<COM21) | (0<<COM20); //set toggle OC2 on compare match
-    TCCR2 |= (1<<CS22) | (1<<CS21) | (0<<CS20); //set clock prescaler at 256
+    TCCR2 |= (0<<COM21) | (1<<COM20); //set toggle OC2 on compare match
+    TCCR2 |= (0<<CS22) | (0<<CS21) | (1<<CS20); //set clock prescaler at 1
 
-    OCR2 = 149; //value to compare, value on OC2 should be toggled with frequenct 19kHz
+    OCR2 = 105; //value to compare, value on OC2 should be toggled with frequenct 19kHz
     //no interrupts needed
+
+    DDRD |= _BV(PD7);
 
 }
 
@@ -94,7 +96,7 @@ void TSOPCheckTask(void* args){
  * This function is registered to call when external interrupt 1 occours. Starts measuring time between cuting IR bariers - sets startTimeTSOP variable to actual time.
  * */
 
-void TSOP1interrupt(){
+void TSOP0interrupt(){
     startTimeTSOP = actualTime;
     stopTimeTSOP = 0;
     freezeDisplayTime = false;
@@ -104,7 +106,7 @@ void TSOP1interrupt(){
  * This function is registered to call when external interrupt 1 occours. Stops measuring time between cuting IR bariers - sets stopTimeTSOP variable to actual time.
  * */
 
-void TSOP2interrupt(){
+void TSOP1interrupt(){
     stopTimeTSOP = actualTime;
     freezeDisplayTime = true;
     measurementToDisplay = true;
@@ -125,8 +127,8 @@ int main(void)
 	setupTimer0();
 	setupTimer2();
     
+	externalInt0funRegister(TSOP0interrupt);
 	externalInt1funRegister(TSOP1interrupt);
-	externalInt2funRegister(TSOP2interrupt);
 	
 	addTask(1, 4, changeDisplayTask, NULL);
 	addTask(2, 10, incrementTimeTask, NULL);
