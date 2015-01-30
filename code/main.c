@@ -40,7 +40,7 @@ void setupTimer2(){
     TCCR2 |= (0<<COM21) | (1<<COM20); //set toggle OC2 on compare match
     TCCR2 |= (0<<CS22) | (0<<CS21) | (1<<CS20); //set clock prescaler at 1
 
-    OCR2 = 105; //value to compare, value on OC2 should be toggled with frequenct 19kHz
+    OCR2 = 106; //value to compare, value on OC2 should be toggled with frequenct 19kHz
     //no interrupts needed
 
     DDRD |= _BV(PD7);
