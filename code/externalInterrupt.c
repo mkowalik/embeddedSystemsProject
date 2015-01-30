@@ -1,17 +1,56 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <stdbool.h>
 #include <stdlib.h>
+#include "externalInterrupt.h"
 
 static int32_t* actualTimePtr = NULL;
+static int32_t gapTime = 0;
 
-void externalIntInit(int32_t* actualTime){
-    MCUCR |= (_BV(ISC11) | _BV(ISC10)); //rising edge of INT1 generates interrupt request
-    MCUCR |= (_BV(ISC01) | _BV(ISC00)); //rising edge of INT0 generates interrupt request
-    GICR |= (_BV(INT1) | _BV(INT0)); //external interrupt request 0 and 1 enable
-    DDRD &= ~(_BV(PD2) | _BV(PD1));
-    PORTD |= (_BV(PD2) | _BV(PD1));
+void externalIntInit(int32_t* actualTime, int32_t gapTimeArg, bool int0switch, bool int1switch){
+    setupLowLevelINT0();
+    setupLowLevelINT1();
+    if (INT0) externalINT0switchOn();
+    else externalINT0switchOff();
+    if (INT1) externalINT1switchOn();
+    else externalINT1switchOff();
+    DDRD &= ~(_BV(INT1) | _BV(INT0));
+    PORTD |= (_BV(INT1) | _BV(INT0));
 
     actualTimePtr = actualTime;
+    gapTime = gapTimeArg;
+}
+
+void externalINT0switchOn(){
+    GICR |= _BV(INT0); //external interrupt request 0 enable
+}
+
+void externalINT0switchOff(){
+    GICR &= ~(_BV(INT0)); //external interrupt request 0 disable
+}
+
+void externalINT1switchOn(){
+    GICR |= _BV(INT1); //external interrupt request 1 enable
+}
+
+void externalINT1switchOff(){
+    GICR |= ~(_BV(INT1)); //external interrupt request 1 disable
+}
+
+void setupLowLevelINT0(){
+    MCUCR &= ~(_BV(ISC01) | _BV(ISC00)); //low level of INT0 genetates interrupt request
+}
+
+void setupLowLevelINT1(){
+    MCUCR &= ~(_BV(ISC11) | _BV(ISC10)); //low level of INT1 genetates interrupt request
+}
+
+void setupRisingEdgeINT0(){
+    MCUCR |= (_BV(ISC01) | _BV(ISC00)); //rising edge of INT0 generates interrupt request
+}
+
+void setupRisingEdgeINT1(){
+    MCUCR |= (_BV(ISC11) | _BV(ISC10)); //rising edge of INT1 generates interrupt request
 }
 
 static void (*int0fun)() = NULL;
@@ -29,17 +68,13 @@ void externalInt1funRegister(void (*foo) ()){
 }
 
 ISR(INT0_vect){
-    if (*actualTimePtr - lastINT0 < 10) return;
+    if (*actualTimePtr - lastINT0 < gapTime) return;
     lastINT0 = *actualTimePtr;
     int0fun();
-    DDRD |= _BV(PD6);
-    PORTD ^= (_BV(PD6));
 }
 
 ISR(INT1_vect){
-    if (*actualTimePtr - lastINT1 < 10) return;
+    if (*actualTimePtr - lastINT1 < gapTime) return;
     lastINT1 = *actualTimePtr;
     int1fun();
-    DDRD |= _BV(PD5);
-    PORTD ^= (_BV(PD5));
 }
