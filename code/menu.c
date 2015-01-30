@@ -20,6 +20,7 @@ uint8_t distChange = 0;
 uint32_t actual_time = 100;
 
 
+
 static uint16_t toMph(uint16_t kph_val){
 	return (62*kph_val/100);
 }
@@ -80,7 +81,7 @@ void displayMenu(uint32_t time, uint8_t button){
 	
 	if(tempButtonVal == kph_button || tempButtonVal == mph_button) actual_unit = tempButtonVal;
 	if(time>0){
-		int16_t velocity_value = dist_value / time * 2777;
+		uint16_t velocity_value = 36 * dist_value / (time * 100);
 		text1(velocity_value, actual_unit, text_1);
 	}
 	else{
