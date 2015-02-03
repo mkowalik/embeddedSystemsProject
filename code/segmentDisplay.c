@@ -7,6 +7,11 @@
 static uint8_t DIGIT[10] = {0b11000000, 0b11111001, 0b10100100, 0b10110000, 0b10011001, 0b10010010, 0b10000010, 0b11111000, 0b10000000, 0b10010000};
 static uint8_t DOT = 0b01111111;
 
+volatile static uint32_t currentValue = 0;
+volatile static uint8_t currentDigitsAfterDot = 0;
+
+static uint8_t currentDisplay = 0;
+
 static void displayDigit(uint8_t displayNr, bool dot, uint8_t value){
     if (displayNr > 3) return;
 
@@ -26,11 +31,6 @@ void segmentDisplayInit(){ //do poprawy
 	DISPLAY_GRD_DDR = DISPLAY_GRD_DDR | 0x0F;
 	DISPLAY_GRD_PORT = DISPLAY_GRD_PORT & 0xFF;
 }
-
-static uint32_t currentValue = 0;
-static uint8_t currentDigitsAfterDot = 0;
-
-static uint8_t currentDisplay = 0;
 
 void changeDisplay(){
     currentDisplay = (currentDisplay+1)%4;

@@ -15,12 +15,18 @@
 
 #define OC2 PD7
 
-static uint32_t actualTime = 0;
+#define GAP_TIME 10 //gap time between external interrupts
+static uint32_t actualTime = GAP_TIME + 1;
 
 static uint32_t startTimeTSOP = 0;
 static uint32_t stopTimeTSOP = 0;
 
-static bool freezeDisplayTime = true;
+static bool freezeDisplayTime = false;
+
+#define DEB0 PA0
+#define DEB1 PA1
+#define DEB2 PD4
+#define DEB3 PD1
 
 /**
  * Timer0 interrupt handler - for task manager. Called every 1ms.
@@ -57,7 +63,7 @@ void setupTimer2(){
     OCR2 = 106; //value to compare, value on OC2 should be toggled with frequenct 19kHz
     //no interrupts needed
 
-    DDRD |= _BV(OC2);
+    DDRD |= _BV(PD7);//set OC2 pin as output
 
 }
 
@@ -75,7 +81,7 @@ void changeDisplayTask(void* args){
 
 void incrementTimeTask(void* args){
     actualTime++;
-    if (!freezeDisplayTime) setValueToDisplay(actualTime - startTimeTSOP, 2); //if object is between first and second gate
+    if (!freezeDisplayTime) setValueToDisplay((uint32_t)(actualTime - startTimeTSOP), 2); //if object is between first and second gate
 }
 
 /**
@@ -109,8 +115,9 @@ void TSOP1interrupt();
  * */
 
 void TSOP0WaitForReady(){
-    setupRisingEdgeINT0();
+    PORTA ^= (_BV(DEB0));
     externalInt0funRegister(TSOP0interrupt);
+    setupRisingEdgeINT0();
 }
 
 /**
@@ -118,8 +125,9 @@ void TSOP0WaitForReady(){
  * */
 
 void TSOP1WaitForReady(){
-    setupRisingEdgeINT1();
+    PORTD ^= (_BV(DEB2));
     externalInt1funRegister(TSOP1interrupt);
+    setupRisingEdgeINT1();
 }
 
 /**
@@ -127,6 +135,8 @@ void TSOP1WaitForReady(){
  * */
 
 void TSOP0interrupt(){
+    PORTA ^= (_BV(DEB1));       //DEBUG
+
     IR_LED_PORT &= ~(_BV(IR_LED_0_PIN));    //switch off IR LED 0
     IR_LED_PORT |= _BV(IR_LED_1_PIN);       //switch on IR LED 1
 
@@ -137,6 +147,7 @@ void TSOP0interrupt(){
 
     setupLowLevelINT0();
     externalInt0funRegister(TSOP0WaitForReady);
+
     externalINT0switchOff();
     externalINT1switchOn();
 }
@@ -146,6 +157,7 @@ void TSOP0interrupt(){
  * */
 
 void TSOP1interrupt(){
+    PORTD ^= (_BV(DEB3));       //DEBUG
     IR_LED_PORT &= ~(_BV(IR_LED_1_PIN));
     IR_LED_PORT |= _BV(IR_LED_0_PIN);
 
@@ -156,8 +168,9 @@ void TSOP1interrupt(){
 
     setupLowLevelINT1();
     externalInt1funRegister(TSOP1WaitForReady);
-    externalINT0switchOn();
+
     externalINT1switchOff();
+    externalINT0switchOn();
 }
 
 /**
@@ -176,31 +189,60 @@ void IrLEDinit(){
 
 int main(void)
 {
-	LCD_Initalize();
-    LCD_WriteText("Photocell v0.001");
-	keyboardInit();
 
-	externalIntInit(&actualTime, 10, true, false);
-	segmentDisplayInit();
+    DDRD |= _BV(DEB2);   //DEBUG
+    DDRD |= _BV(DEB3);   //DEBUG
+    DDRA |= _BV(DEB0);   //DEBUG
+    DDRA |= _BV(DEB1);   //DEBUG
+    PORTD |= _BV(DEB2);   //DEBUG
+    PORTD |= _BV(DEB3);   //DEBUG
+    PORTA |= _BV(DEB0);   //DEBUG
+    PORTA |= _BV(DEB1);   //DEBUG
+
+    PORTA &= ~(_BV(DEB0));  //DEBUG
+    _delay_ms(500);        //DEBUG
+    PORTA &= ~(_BV(DEB1));  //DEBUG
+    _delay_ms(500);        //DEBUG
 	
 	setupTimer0();
 	setupTimer2();
 
 	IrLEDinit();
-    
-	externalInt0funRegister(TSOP0WaitForReady);
-	externalInt1funRegister(TSOP1WaitForReady);
-	
-	addTask(1, 4, changeDisplayTask, NULL);
-	addTask(2, 10, incrementTimeTask, NULL);
-	addTask(3, 40, checkButtonTask, NULL);
-	addTask(4, 20, TSOPCheckTask, NULL);
-	
-	_delay_ms(1000);
-	LCD_Clear();
 
+	segmentDisplayInit();
+
+	externalIntInit(&actualTime, GAP_TIME, true, false);
+    externalInt0funRegister(TSOP0WaitForReady);
+    externalInt1funRegister(TSOP1WaitForReady);
+
+	LCD_Initalize();
+    LCD_WriteText("Photocell v0.001");
+	
+	keyboardInit();
+
+	addTask(0, 4, changeDisplayTask, NULL);
+	addTask(1, 10, incrementTimeTask, NULL);
+	addTask(2, 40, checkButtonTask, NULL);
+	addTask(3, 20, TSOPCheckTask, NULL);
+	
+	setValueToDisplay(0, 3);    //DEBUG //dlaczego to jest w ogole potrzebne?!?!??!!?
+
+    _delay_ms(1000);
+	LCD_Clear();
 	displayMenu(0,0);
 	
+
+    PORTD &= ~(_BV(DEB2));  //DEBUG
+    _delay_ms(500);        //DEBUG
+    PORTD &= ~(_BV(DEB3));  //DEBUG
+    _delay_ms(500);        //DEBUG
+    PORTD |= _BV(DEB2);   //DEBUG
+    PORTD |= _BV(DEB3);   //DEBUG
+    PORTA |= _BV(DEB0);   //DEBUG
+    PORTA |= _BV(DEB1);   //DEBUG
+
 	sei();								// turn interrupts on
+    
 	execute();
+
 }

@@ -11,7 +11,7 @@
 #include "HD44780.h"
 #include "menu.h"
  
-uint16_t dist_value = 1000; //1000/100 = 10cm
+uint32_t dist_value = 1000; //1000/100 = 10m
 uint8_t tempButtonVal = 0;
 uint8_t actual_unit = kph_button;
 char rightarrow = '>';
@@ -21,17 +21,17 @@ uint32_t actual_time = 100;
 
 
 
-static uint16_t toMph(uint16_t kph_val){
+static uint32_t toMph(uint32_t kph_val){
 	return (62*kph_val/100);
 }
 
-static void text1(uint16_t value, uint8_t unit, char * text){
+static void text1(uint32_t value, uint8_t unit, char * text){
 	if(unit == kph_button){
-		sprintf(text, "%u.%u %c kph mph", value/100, value%100, rightarrow);
+		sprintf(text, "%lu.%02lu %c kph mph", value/100, value%100, rightarrow);
 	}
 	else{
 		value = toMph(value);
-		sprintf(text, "%u.%u kph %c mph", value/100, value%100, rightarrow);
+		sprintf(text, "%lu.%02lu kph %c mph", value/100, value%100, rightarrow);
 	}		
 }
 
@@ -44,9 +44,9 @@ static void text1Error(uint8_t unit, char * text){
 	}		
 }
 
-static void text2(uint16_t value, char * text){
-	if(value%100<10) sprintf(text, "dist: %c %u.0%u %c", leftarrow, value/100, value%100, rightarrow);
-	else sprintf(text, "dist: %c %u.%u %c", leftarrow, value/100, value%100, rightarrow);
+static void text2(uint32_t value, char * text){
+	if(value%100<10) sprintf(text, "dist: %c%lu.0%lum%c", leftarrow, value/100, value%100, rightarrow);
+	else sprintf(text, "dist: %c%lu.%lum%c", leftarrow, value/100, value%100, rightarrow);
 	
 }
 
@@ -81,12 +81,11 @@ void displayMenu(uint32_t time, uint8_t button){
 	
 	if(tempButtonVal == kph_button || tempButtonVal == mph_button) actual_unit = tempButtonVal;
 	if(time>0){
-		uint16_t velocity_value = 36 * dist_value / (time * 100);
+		uint32_t velocity_value = (360 * dist_value) / (time);
 		text1(velocity_value, actual_unit, text_1);
 	}
 	else{
 		text1Error(actual_unit, text_1);
-		
 	}
 	
 	

@@ -4,18 +4,18 @@
 #include <stdlib.h>
 #include "externalInterrupt.h"
 
-static int32_t* actualTimePtr = NULL;
-static int32_t gapTime = 0;
+static uint32_t* actualTimePtr = NULL;
+static uint32_t gapTime = 0;
 
-void externalIntInit(int32_t* actualTime, int32_t gapTimeArg, bool int0switch, bool int1switch){
+void externalIntInit(uint32_t* actualTime, uint32_t gapTimeArg, bool int0switch, bool int1switch){
     setupLowLevelINT0();
     setupLowLevelINT1();
-    if (INT0) externalINT0switchOn();
+    if (int0switch) externalINT0switchOn();
     else externalINT0switchOff();
-    if (INT1) externalINT1switchOn();
+    if (int1switch) externalINT1switchOn();
     else externalINT1switchOff();
-    DDRD &= ~(_BV(INT1) | _BV(INT0));
-    PORTD |= (_BV(INT1) | _BV(INT0));
+    DDRD &= ~(_BV(PD2) | _BV(PD3)); //make PD2 and PD3 as inputs
+    PORTD &= ~(_BV(PD2) | _BV(PD3)); //switch off pull-up
 
     actualTimePtr = actualTime;
     gapTime = gapTimeArg;
@@ -34,7 +34,7 @@ void externalINT1switchOn(){
 }
 
 void externalINT1switchOff(){
-    GICR |= ~(_BV(INT1)); //external interrupt request 1 disable
+    GICR &= ~(_BV(INT1)); //external interrupt request 1 disable
 }
 
 void setupLowLevelINT0(){
@@ -53,8 +53,8 @@ void setupRisingEdgeINT1(){
     MCUCR |= (_BV(ISC11) | _BV(ISC10)); //rising edge of INT1 generates interrupt request
 }
 
-static void (*int0fun)() = NULL;
-static void (*int1fun)() = NULL;
+static void (* int0fun)() = NULL;
+static void (* int1fun)() = NULL;
 
 static int32_t lastINT1 = 0;
 static int32_t lastINT0 = 0;
@@ -68,13 +68,13 @@ void externalInt1funRegister(void (*foo) ()){
 }
 
 ISR(INT0_vect){
-    if (*actualTimePtr - lastINT0 < gapTime) return;
+    if ((*actualTimePtr) - lastINT0 < gapTime) return;
     lastINT0 = *actualTimePtr;
     int0fun();
 }
 
 ISR(INT1_vect){
-    if (*actualTimePtr - lastINT1 < gapTime) return;
+    if ((*actualTimePtr) - lastINT1 < gapTime) return;
     lastINT1 = *actualTimePtr;
     int1fun();
 }

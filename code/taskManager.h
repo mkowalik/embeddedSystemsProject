@@ -7,7 +7,7 @@
 /**
 * Maximum number of tasks.
 */
-#define MAX_NUMBER_OF_TASKS 8
+#define MAX_NUMBER_OF_TASKS 4
 
 /**
 * Function increases counters in every task. It should be placed in interval interrupt handler code. When counter is bigger or equal to interval, task should be executed by execute function.
