@@ -2,11 +2,13 @@
 #include <avr/interrupt.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "taskManager.h"
 #include "menu.h"
 #include "externalInterrupt.h"
 #include "segmentDisplay.h"
 #include "keyboard.h"
+#include "UART.h"
 
 #define IR_LED_0_PIN PD5
 #define IR_LED_1_PIN PD6
@@ -93,6 +95,12 @@ void checkButtonTask(void* args){
     pushedButtonEvent(read());
 }
 
+void convertDataToUART(uint32_t time){
+    char buffer[40];
+    sprintf (buffer, "time: %lu.%2lu s\n", time/100, time%100);
+    sendDataUART(buffer);
+}
+
 bool measurementToDisplay = false;
 
 /**
@@ -102,6 +110,7 @@ bool measurementToDisplay = false;
 void TSOPCheckTask(void* args){
     if (!measurementToDisplay) return;
     refreshSpeed(stopTimeTSOP - startTimeTSOP);
+    convertDataToUART(stopTimeTSOP - startTimeTSOP);
     measurementToDisplay = false;
 }
 
