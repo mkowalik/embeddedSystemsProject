@@ -10,8 +10,6 @@ static uint8_t DOT = 0b01111111;
 volatile static uint32_t currentValue = 0;
 volatile static uint8_t currentDigitsAfterDot = 0;
 
-static uint8_t currentDisplay = 0;
-
 static void displayDigit(uint8_t displayNr, bool dot, uint8_t value){
     if (displayNr > 3) return;
 
@@ -33,6 +31,9 @@ void segmentDisplayInit(){ //do poprawy
 }
 
 void changeDisplay(){
+
+    static uint8_t currentDisplay = 0;
+
     currentDisplay = (currentDisplay+1)%4;
 
     bool dot = false;
@@ -45,7 +46,7 @@ void changeDisplay(){
 
 }
 
-void setValueToDisplay(uint32_t value, uint8_t digitsAfterDot){
+void setValueToDisplay(volatile uint32_t value, uint8_t digitsAfterDot){
     currentValue = value;
     currentDigitsAfterDot = digitsAfterDot;
 }

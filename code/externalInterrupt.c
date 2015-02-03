@@ -4,10 +4,10 @@
 #include <stdlib.h>
 #include "externalInterrupt.h"
 
-static uint32_t* actualTimePtr = NULL;
+static volatile uint32_t* actualTimePtr = NULL;
 static uint32_t gapTime = 0;
 
-void externalIntInit(uint32_t* actualTime, uint32_t gapTimeArg, bool int0switch, bool int1switch){
+void externalIntInit(volatile uint32_t* actualTime, uint32_t gapTimeArg, bool int0switch, bool int1switch){
     setupLowLevelINT0();
     setupLowLevelINT1();
     if (int0switch) externalINT0switchOn();

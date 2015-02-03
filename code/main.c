@@ -18,17 +18,16 @@
 #define OC2 PD7
 
 #define GAP_TIME 10 //gap time between external interrupts
-static uint32_t actualTime = GAP_TIME + 1;
+static volatile uint32_t actualTime = GAP_TIME + 1;
 
-static uint32_t startTimeTSOP = 0;
-static uint32_t stopTimeTSOP = 0;
+static volatile uint32_t startTimeTSOP = 0;
+static volatile uint32_t stopTimeTSOP = 0;
 
-static bool freezeDisplayTime = false;
+static volatile bool freezeDisplayTime = false;
 
 #define DEB0 PA0
 #define DEB1 PA1
 #define DEB2 PD4
-#define DEB3 PD1
 
 /**
  * Timer0 interrupt handler - for task manager. Called every 1ms.
@@ -83,7 +82,8 @@ void changeDisplayTask(void* args){
 
 void incrementTimeTask(void* args){
     actualTime++;
-    if (!freezeDisplayTime) setValueToDisplay((uint32_t)(actualTime - startTimeTSOP), 2); //if object is between first and second gate
+    if (!freezeDisplayTime) setValueToDisplay(actualTime - startTimeTSOP, 2); //if object is between first and second gate
+    else setValueToDisplay(stopTimeTSOP - startTimeTSOP, 2);    //TEGO TU NIE POWINNO BYC, A JEDNAK JEST POTRZEBNE A I TAK NIC NIE DAJE
 }
 
 /**
@@ -97,7 +97,8 @@ void checkButtonTask(void* args){
 
 void convertDataToUART(uint32_t time){
     char buffer[40];
-    sprintf (buffer, "time: %lu.%2lu s\n", time/100, time%100);
+    sprintf (buffer, "%lu.%02lu s\n", time/100, time%100);
+    while (isBusyUART());   //wait until UART ready
     sendDataUART(buffer);
 }
 
@@ -124,7 +125,6 @@ void TSOP1interrupt();
  * */
 
 void TSOP0WaitForReady(){
-    PORTA ^= (_BV(DEB0));
     externalInt0funRegister(TSOP0interrupt);
     setupRisingEdgeINT0();
 }
@@ -134,7 +134,6 @@ void TSOP0WaitForReady(){
  * */
 
 void TSOP1WaitForReady(){
-    PORTD ^= (_BV(DEB2));
     externalInt1funRegister(TSOP1interrupt);
     setupRisingEdgeINT1();
 }
@@ -144,7 +143,6 @@ void TSOP1WaitForReady(){
  * */
 
 void TSOP0interrupt(){
-    PORTA ^= (_BV(DEB1));       //DEBUG
 
     IR_LED_PORT &= ~(_BV(IR_LED_0_PIN));    //switch off IR LED 0
     IR_LED_PORT |= _BV(IR_LED_1_PIN);       //switch on IR LED 1
@@ -166,7 +164,6 @@ void TSOP0interrupt(){
  * */
 
 void TSOP1interrupt(){
-    PORTD ^= (_BV(DEB3));       //DEBUG
     IR_LED_PORT &= ~(_BV(IR_LED_1_PIN));
     IR_LED_PORT |= _BV(IR_LED_0_PIN);
 
@@ -200,19 +197,12 @@ int main(void)
 {
 
     DDRD |= _BV(DEB2);   //DEBUG
-    DDRD |= _BV(DEB3);   //DEBUG
     DDRA |= _BV(DEB0);   //DEBUG
     DDRA |= _BV(DEB1);   //DEBUG
     PORTD |= _BV(DEB2);   //DEBUG
-    PORTD |= _BV(DEB3);   //DEBUG
     PORTA |= _BV(DEB0);   //DEBUG
     PORTA |= _BV(DEB1);   //DEBUG
 
-    PORTA &= ~(_BV(DEB0));  //DEBUG
-    _delay_ms(500);        //DEBUG
-    PORTA &= ~(_BV(DEB1));  //DEBUG
-    _delay_ms(500);        //DEBUG
-	
 	setupTimer0();
 	setupTimer2();
 
@@ -229,27 +219,20 @@ int main(void)
 	
 	keyboardInit();
 
+	initUART();
+
 	addTask(0, 4, changeDisplayTask, NULL);
 	addTask(1, 10, incrementTimeTask, NULL);
 	addTask(2, 40, checkButtonTask, NULL);
 	addTask(3, 20, TSOPCheckTask, NULL);
 	
 	setValueToDisplay(0, 3);    //DEBUG //dlaczego to jest w ogole potrzebne?!?!??!!?
+	                                    //dlaczego czasy inne na uarcie i wyswietlaczu skoro zmienne volatile
 
     _delay_ms(1000);
 	LCD_Clear();
 	displayMenu(0,0);
 	
-
-    PORTD &= ~(_BV(DEB2));  //DEBUG
-    _delay_ms(500);        //DEBUG
-    PORTD &= ~(_BV(DEB3));  //DEBUG
-    _delay_ms(500);        //DEBUG
-    PORTD |= _BV(DEB2);   //DEBUG
-    PORTD |= _BV(DEB3);   //DEBUG
-    PORTA |= _BV(DEB0);   //DEBUG
-    PORTA |= _BV(DEB1);   //DEBUG
-
 	sei();								// turn interrupts on
     
 	execute();

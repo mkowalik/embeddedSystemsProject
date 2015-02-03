@@ -23,6 +23,6 @@ void changeDisplay();
 /**
  * Set actual displaying value.
  * */
-void setValueToDisplay(uint32_t value, uint8_t digitsAfterDot);
+void setValueToDisplay(volatile uint32_t value, uint8_t digitsAfterDot);
 
 #endif //SEGMENT_DISPLAY_H_

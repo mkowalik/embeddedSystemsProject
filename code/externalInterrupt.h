@@ -9,7 +9,7 @@
 /**
  * Initialisation function for handling external interrupts on rising edges. Constuctor takes pointer to int which says actual time of working microcontroller in ms. Second argument is gap time between invoking registered function for interrupts.
  * */
-void externalIntInit(uint32_t* actualTime, uint32_t gapTimeArg, bool int0switch, bool int1switch);
+void externalIntInit(volatile uint32_t* actualTime, uint32_t gapTimeArg, bool int0switch, bool int1switch);
 
 void externalINT0switchOn();
 
