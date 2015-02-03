@@ -2056,7 +2056,6 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <part name="R6" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
 <part name="R7" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
 <part name="R8" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
-<part name="R9" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
 <part name="R10" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
 <part name="R11" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
 <part name="R12" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
@@ -2072,12 +2071,15 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <part name="R22" library="eagle-ltspice" deviceset="R" device="0204/7"/>
 <part name="R23" library="eagle-ltspice" deviceset="R" device="0204/7"/>
 <part name="R24" library="eagle-ltspice" deviceset="R" device="0204/7"/>
-<part name="Q15" library="transistor-small-signal" deviceset="BC547" device=""/>
 <part name="Q16" library="transistor-small-signal" deviceset="BC547" device=""/>
 <part name="SW4" library="switch-coto" deviceset="CT10-XXXX-" device="G4"/>
 <part name="SW1" library="switch-coto" deviceset="CT10-XXXX-" device="G4"/>
 <part name="SW2" library="switch-coto" deviceset="CT10-XXXX-" device="G4"/>
 <part name="SW3" library="switch-coto" deviceset="CT10-XXXX-" device="G4"/>
+<part name="Q17" library="transistor-small-signal" deviceset="BC547" device=""/>
+<part name="R25" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
+<part name="R26" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
+<part name="R27" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
 </parts>
 <sheets>
 <sheet>
@@ -2102,12 +2104,12 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <instance part="Q10" gate="1" x="147.32" y="-43.18"/>
 <instance part="Q11" gate="1" x="190.5" y="-53.34"/>
 <instance part="Q12" gate="1" x="233.68" y="-66.04"/>
-<instance part="IR1" gate="A" x="35.56" y="-106.68" rot="R270"/>
-<instance part="IR2" gate="A" x="73.66" y="-106.68" rot="R270"/>
-<instance part="Q13" gate="1" x="182.88" y="-93.98"/>
-<instance part="Q14" gate="1" x="182.88" y="-116.84"/>
-<instance part="LED4" gate="G$1" x="208.28" y="-101.6" rot="R90"/>
-<instance part="LED5" gate="G$1" x="208.28" y="-127" rot="R90"/>
+<instance part="IR1" gate="A" x="35.56" y="-109.22" rot="R270"/>
+<instance part="IR2" gate="A" x="73.66" y="-109.22" rot="R270"/>
+<instance part="Q13" gate="1" x="182.88" y="-99.06" rot="R270"/>
+<instance part="Q14" gate="1" x="198.12" y="-129.54" rot="R270"/>
+<instance part="LED4" gate="G$1" x="228.6" y="-101.6" rot="R270"/>
+<instance part="LED5" gate="G$1" x="228.6" y="-132.08" rot="R270"/>
 <instance part="SV1" gate="G$1" x="-48.26" y="17.78"/>
 <instance part="R1" gate="G$1" x="5.08" y="78.74"/>
 <instance part="R2" gate="G$1" x="17.78" y="81.28"/>
@@ -2117,14 +2119,13 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <instance part="R6" gate="G$1" x="68.58" y="91.44"/>
 <instance part="R7" gate="G$1" x="81.28" y="93.98"/>
 <instance part="R8" gate="G$1" x="93.98" y="96.52"/>
-<instance part="R9" gate="G$1" x="172.72" y="-116.84"/>
-<instance part="R10" gate="G$1" x="172.72" y="-93.98"/>
+<instance part="R10" gate="G$1" x="170.18" y="-93.98"/>
 <instance part="R11" gate="G$1" x="91.44" y="-35.56"/>
 <instance part="R12" gate="G$1" x="134.62" y="-43.18"/>
 <instance part="R13" gate="G$1" x="177.8" y="-53.34"/>
 <instance part="R14" gate="G$1" x="220.98" y="-66.04"/>
-<instance part="R15" gate="G$1" x="195.58" y="-101.6"/>
-<instance part="R16" gate="G$1" x="195.58" y="-127"/>
+<instance part="R15" gate="G$1" x="213.36" y="-101.6"/>
+<instance part="R16" gate="G$1" x="213.36" y="-132.08"/>
 <instance part="R17" gate="G$1" x="76.2" y="53.34" rot="R90"/>
 <instance part="R18" gate="G$1" x="86.36" y="53.34" rot="R90"/>
 <instance part="R19" gate="G$1" x="96.52" y="53.34" rot="R90"/>
@@ -2133,12 +2134,15 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <instance part="R22" gate="G$1" x="127" y="53.34" rot="R90"/>
 <instance part="R23" gate="G$1" x="137.16" y="53.34" rot="R90"/>
 <instance part="R24" gate="G$1" x="147.32" y="53.34" rot="R90"/>
-<instance part="Q15" gate="1" x="137.16" y="-119.38" rot="R90"/>
-<instance part="Q16" gate="1" x="137.16" y="-96.52" rot="R90"/>
+<instance part="Q16" gate="1" x="198.12" y="-99.06" rot="R270"/>
 <instance part="SW4" gate="G$1" x="-48.26" y="-38.1"/>
 <instance part="SW1" gate="G$1" x="-40.64" y="-45.72"/>
 <instance part="SW2" gate="G$1" x="-33.02" y="-53.34"/>
 <instance part="SW3" gate="G$1" x="-25.4" y="-60.96"/>
+<instance part="Q17" gate="1" x="182.88" y="-129.54" rot="R270"/>
+<instance part="R25" gate="G$1" x="170.18" y="-83.82"/>
+<instance part="R26" gate="G$1" x="170.18" y="-114.3"/>
+<instance part="R27" gate="G$1" x="170.18" y="-124.46"/>
 </instances>
 <busses>
 </busses>
@@ -2260,29 +2264,22 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <wire x1="137.16" y1="73.66" x2="137.16" y2="78.74" width="0.1524" layer="91"/>
 <pinref part="Q8" gate="1" pin="C"/>
 <wire x1="147.32" y1="73.66" x2="147.32" y2="78.74" width="0.1524" layer="91"/>
-<wire x1="-58.42" y1="91.44" x2="-58.42" y2="-38.1" width="0.1524" layer="91"/>
+<wire x1="-58.42" y1="91.44" x2="-58.42" y2="-132.08" width="0.1524" layer="91"/>
 <pinref part="IR1" gate="A" pin="VS"/>
-<wire x1="-58.42" y1="-38.1" x2="-58.42" y2="-45.72" width="0.1524" layer="91"/>
-<wire x1="-58.42" y1="-53.34" x2="-58.42" y2="-60.96" width="0.1524" layer="91"/>
-<wire x1="-58.42" y1="-60.96" x2="-58.42" y2="-129.54" width="0.1524" layer="91"/>
-<wire x1="-58.42" y1="-129.54" x2="40.64" y2="-129.54" width="0.1524" layer="91"/>
-<wire x1="40.64" y1="-129.54" x2="40.64" y2="-119.38" width="0.1524" layer="91"/>
+<wire x1="-58.42" y1="-132.08" x2="40.64" y2="-132.08" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="-132.08" x2="40.64" y2="-121.92" width="0.1524" layer="91"/>
 <pinref part="IR2" gate="A" pin="VS"/>
-<wire x1="40.64" y1="-129.54" x2="78.74" y2="-129.54" width="0.1524" layer="91"/>
-<wire x1="78.74" y1="-129.54" x2="78.74" y2="-119.38" width="0.1524" layer="91"/>
-<wire x1="78.74" y1="-129.54" x2="78.74" y2="-142.24" width="0.1524" layer="91"/>
-<wire x1="78.74" y1="-142.24" x2="218.44" y2="-142.24" width="0.1524" layer="91"/>
-<wire x1="218.44" y1="-142.24" x2="218.44" y2="-109.22" width="0.1524" layer="91"/>
-<pinref part="Q13" gate="1" pin="C"/>
-<wire x1="218.44" y1="-109.22" x2="218.44" y2="-83.82" width="0.1524" layer="91"/>
-<wire x1="218.44" y1="-83.82" x2="185.42" y2="-83.82" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="-83.82" x2="185.42" y2="-88.9" width="0.1524" layer="91"/>
-<pinref part="Q14" gate="1" pin="C"/>
-<wire x1="218.44" y1="-109.22" x2="185.42" y2="-109.22" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="-109.22" x2="185.42" y2="-111.76" width="0.1524" layer="91"/>
-<junction x="218.44" y="-109.22"/>
-<junction x="78.74" y="-129.54"/>
-<junction x="40.64" y="-129.54"/>
+<wire x1="40.64" y1="-132.08" x2="78.74" y2="-132.08" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="-132.08" x2="78.74" y2="-121.92" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="-132.08" x2="78.74" y2="-142.24" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="-142.24" x2="236.22" y2="-142.24" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="-142.24" x2="236.22" y2="-132.08" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="-132.08" x2="236.22" y2="-101.6" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="-101.6" x2="231.14" y2="-101.6" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="-132.08" x2="223.52" y2="-132.08" width="0.1524" layer="91"/>
+<junction x="236.22" y="-132.08"/>
+<junction x="78.74" y="-132.08"/>
+<junction x="40.64" y="-132.08"/>
 <junction x="147.32" y="78.74"/>
 <junction x="137.16" y="78.74"/>
 <junction x="127" y="78.74"/>
@@ -2295,19 +2292,8 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="22.86" y1="81.28" x2="78.74" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="78.74" y1="81.28" x2="78.74" y2="78.74" width="0.1524" layer="91"/>
-<wire x1="-30.48" y1="-60.96" x2="-58.42" y2="-60.96" width="0.1524" layer="91"/>
-<wire x1="-38.1" y1="-53.34" x2="-58.42" y2="-53.34" width="0.1524" layer="91"/>
-<wire x1="-58.42" y1="-53.34" x2="-58.42" y2="-45.72" width="0.1524" layer="91"/>
-<wire x1="-58.42" y1="-45.72" x2="-45.72" y2="-45.72" width="0.1524" layer="91"/>
-<wire x1="-53.34" y1="-38.1" x2="-58.42" y2="-38.1" width="0.1524" layer="91"/>
-<junction x="-58.42" y="-38.1"/>
-<junction x="-58.42" y="-45.72"/>
-<junction x="-58.42" y="-53.34"/>
-<junction x="-58.42" y="-60.96"/>
-<pinref part="SW4" gate="G$1" pin="1"/>
-<pinref part="SW1" gate="G$1" pin="1"/>
-<pinref part="SW2" gate="G$1" pin="1"/>
-<pinref part="SW3" gate="G$1" pin="1"/>
+<pinref part="LED5" gate="G$1" pin="C"/>
+<pinref part="LED4" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="N$14" class="0">
@@ -2629,79 +2615,24 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <pinref part="R14" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="N$44" class="0">
-<segment>
-<pinref part="Q11" gate="1" pin="E"/>
-<wire x1="193.04" y1="-76.2" x2="193.04" y2="-58.42" width="0.1524" layer="91"/>
-<pinref part="Q9" gate="1" pin="E"/>
-<wire x1="106.68" y1="-40.64" x2="106.68" y2="-76.2" width="0.1524" layer="91"/>
-<wire x1="-48.26" y1="88.9" x2="-55.88" y2="88.9" width="0.1524" layer="91"/>
-<pinref part="DIS1" gate="G$1" pin="GND"/>
-<wire x1="12.7" y1="127" x2="12.7" y2="124.46" width="0.1524" layer="91"/>
-<wire x1="12.7" y1="124.46" x2="2.54" y2="124.46" width="0.1524" layer="91"/>
-<wire x1="2.54" y1="124.46" x2="2.54" y2="147.32" width="0.1524" layer="91"/>
-<wire x1="2.54" y1="147.32" x2="-55.88" y2="147.32" width="0.1524" layer="91"/>
-<wire x1="-55.88" y1="147.32" x2="-55.88" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="-55.88" y1="88.9" x2="-55.88" y2="10.16" width="0.1524" layer="91"/>
-<pinref part="Q12" gate="1" pin="E"/>
-<wire x1="-55.88" y1="10.16" x2="-55.88" y2="-76.2" width="0.1524" layer="91"/>
-<wire x1="236.22" y1="-71.12" x2="236.22" y2="-76.2" width="0.1524" layer="91"/>
-<wire x1="236.22" y1="-76.2" x2="193.04" y2="-76.2" width="0.1524" layer="91"/>
-<wire x1="193.04" y1="-76.2" x2="228.6" y2="-76.2" width="0.1524" layer="91"/>
-<wire x1="228.6" y1="-76.2" x2="149.86" y2="-76.2" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="-76.2" x2="60.96" y2="-76.2" width="0.1524" layer="91"/>
-<pinref part="Q10" gate="1" pin="E"/>
-<wire x1="60.96" y1="-76.2" x2="25.4" y2="-76.2" width="0.1524" layer="91"/>
-<wire x1="25.4" y1="-76.2" x2="-55.88" y2="-76.2" width="0.1524" layer="91"/>
-<wire x1="149.86" y1="-48.26" x2="149.86" y2="-76.2" width="0.1524" layer="91"/>
-<wire x1="106.68" y1="-76.2" x2="149.86" y2="-76.2" width="0.1524" layer="91"/>
-<pinref part="IR1" gate="A" pin="GND"/>
-<wire x1="30.48" y1="-119.38" x2="25.4" y2="-119.38" width="0.1524" layer="91"/>
-<wire x1="25.4" y1="-119.38" x2="25.4" y2="-76.2" width="0.1524" layer="91"/>
-<pinref part="IR2" gate="A" pin="GND"/>
-<wire x1="68.58" y1="-119.38" x2="60.96" y2="-119.38" width="0.1524" layer="91"/>
-<wire x1="60.96" y1="-119.38" x2="60.96" y2="-76.2" width="0.1524" layer="91"/>
-<pinref part="LED5" gate="G$1" pin="C"/>
-<wire x1="213.36" y1="-127" x2="228.6" y2="-127" width="0.1524" layer="91"/>
-<wire x1="228.6" y1="-127" x2="228.6" y2="-101.6" width="0.1524" layer="91"/>
-<pinref part="LED4" gate="G$1" pin="C"/>
-<wire x1="228.6" y1="-101.6" x2="228.6" y2="-76.2" width="0.1524" layer="91"/>
-<wire x1="213.36" y1="-101.6" x2="228.6" y2="-101.6" width="0.1524" layer="91"/>
-<junction x="228.6" y="-101.6"/>
-<junction x="228.6" y="-76.2"/>
-<junction x="193.04" y="-76.2"/>
-<junction x="149.86" y="-76.2"/>
-<junction x="106.68" y="-76.2"/>
-<junction x="-55.88" y="88.9"/>
-<pinref part="SV1" gate="G$1" pin="1"/>
-<wire x1="-40.64" y1="15.24" x2="-38.1" y2="15.24" width="0.1524" layer="91"/>
-<wire x1="-38.1" y1="15.24" x2="-38.1" y2="10.16" width="0.1524" layer="91"/>
-<wire x1="-38.1" y1="10.16" x2="-55.88" y2="10.16" width="0.1524" layer="91"/>
-<junction x="-55.88" y="10.16"/>
-<junction x="25.4" y="-76.2"/>
-<junction x="60.96" y="-76.2"/>
-</segment>
-</net>
 <net name="N$46" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="(INT0)PD2"/>
 <wire x1="-10.16" y1="38.1" x2="5.08" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="5.08" y1="38.1" x2="5.08" y2="-119.38" width="0.1524" layer="91"/>
+<wire x1="5.08" y1="38.1" x2="5.08" y2="-127" width="0.1524" layer="91"/>
 <pinref part="IR2" gate="A" pin="VO"/>
-<wire x1="5.08" y1="-119.38" x2="5.08" y2="-121.92" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="-119.38" x2="73.66" y2="-124.46" width="0.1524" layer="91"/>
-<wire x1="73.66" y1="-124.46" x2="5.08" y2="-124.46" width="0.1524" layer="91"/>
-<wire x1="5.08" y1="-124.46" x2="5.08" y2="-121.92" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="-121.92" x2="73.66" y2="-127" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="-127" x2="5.08" y2="-127" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$47" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="(INT1)PD3"/>
 <wire x1="-10.16" y1="40.64" x2="7.62" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="7.62" y1="40.64" x2="7.62" y2="-121.92" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="40.64" x2="7.62" y2="-124.46" width="0.1524" layer="91"/>
 <pinref part="IR1" gate="A" pin="VO"/>
-<wire x1="7.62" y1="-121.92" x2="35.56" y2="-121.92" width="0.1524" layer="91"/>
-<wire x1="35.56" y1="-121.92" x2="35.56" y2="-119.38" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="-124.46" x2="35.56" y2="-124.46" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="-124.46" x2="35.56" y2="-121.92" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$42" class="0">
@@ -2709,30 +2640,13 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <wire x1="35.56" y1="50.8" x2="35.56" y2="-83.82" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="(OC2)PD7"/>
 <wire x1="35.56" y1="50.8" x2="-10.16" y2="50.8" width="0.1524" layer="91"/>
-<wire x1="101.6" y1="-116.84" x2="101.6" y2="-93.98" width="0.1524" layer="91"/>
-<junction x="101.6" y="-93.98"/>
-<wire x1="132.08" y1="-93.98" x2="101.6" y2="-93.98" width="0.1524" layer="91"/>
-<wire x1="35.56" y1="-83.82" x2="101.6" y2="-83.82" width="0.1524" layer="91"/>
-<wire x1="101.6" y1="-83.82" x2="101.6" y2="-93.98" width="0.1524" layer="91"/>
-<pinref part="Q16" gate="1" pin="C"/>
-<pinref part="Q15" gate="1" pin="C"/>
-<wire x1="132.08" y1="-116.84" x2="101.6" y2="-116.84" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$43" class="0">
-<segment>
-<pinref part="Q13" gate="1" pin="E"/>
-<wire x1="190.5" y1="-101.6" x2="185.42" y2="-101.6" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="-101.6" x2="185.42" y2="-99.06" width="0.1524" layer="91"/>
-<pinref part="R15" gate="G$1" pin="1"/>
-</segment>
-</net>
-<net name="N$45" class="0">
-<segment>
-<pinref part="Q14" gate="1" pin="E"/>
-<wire x1="190.5" y1="-127" x2="185.42" y2="-127" width="0.1524" layer="91"/>
-<wire x1="185.42" y1="-127" x2="185.42" y2="-121.92" width="0.1524" layer="91"/>
-<pinref part="R16" gate="G$1" pin="1"/>
+<wire x1="35.56" y1="-83.82" x2="147.32" y2="-83.82" width="0.1524" layer="91"/>
+<pinref part="R25" gate="G$1" pin="1"/>
+<wire x1="147.32" y1="-83.82" x2="165.1" y2="-83.82" width="0.1524" layer="91"/>
+<wire x1="147.32" y1="-83.82" x2="147.32" y2="-114.3" width="0.1524" layer="91"/>
+<pinref part="R26" gate="G$1" pin="1"/>
+<wire x1="147.32" y1="-114.3" x2="165.1" y2="-114.3" width="0.1524" layer="91"/>
+<junction x="147.32" y="-83.82"/>
 </segment>
 </net>
 <net name="N$48" class="0">
@@ -2847,17 +2761,10 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <wire x1="226.06" y1="-66.04" x2="231.14" y2="-66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$57" class="0">
-<segment>
-<pinref part="LED4" gate="G$1" pin="A"/>
-<wire x1="205.74" y1="-101.6" x2="200.66" y2="-101.6" width="0.1524" layer="91"/>
-<pinref part="R15" gate="G$1" pin="2"/>
-</segment>
-</net>
 <net name="N$58" class="0">
 <segment>
 <pinref part="LED5" gate="G$1" pin="A"/>
-<wire x1="205.74" y1="-127" x2="200.66" y2="-127" width="0.1524" layer="91"/>
+<wire x1="231.14" y1="-132.08" x2="218.44" y2="-132.08" width="0.1524" layer="91"/>
 <pinref part="R16" gate="G$1" pin="2"/>
 </segment>
 </net>
@@ -2917,55 +2824,23 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <pinref part="R24" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="N$3" class="0">
-<segment>
-<pinref part="Q13" gate="1" pin="B"/>
-<pinref part="R10" gate="G$1" pin="2"/>
-<wire x1="180.34" y1="-93.98" x2="177.8" y2="-93.98" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$51" class="0">
-<segment>
-<pinref part="Q14" gate="1" pin="B"/>
-<pinref part="R9" gate="G$1" pin="2"/>
-<wire x1="180.34" y1="-116.84" x2="177.8" y2="-116.84" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$52" class="0">
-<segment>
-<pinref part="R10" gate="G$1" pin="1"/>
-<wire x1="167.64" y1="-93.98" x2="142.24" y2="-93.98" width="0.1524" layer="91"/>
-<pinref part="Q16" gate="1" pin="E"/>
-</segment>
-</net>
-<net name="N$67" class="0">
-<segment>
-<pinref part="Q15" gate="1" pin="E"/>
-<pinref part="R9" gate="G$1" pin="1"/>
-<wire x1="142.24" y1="-116.84" x2="167.64" y2="-116.84" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$68" class="0">
 <segment>
-<pinref part="Q16" gate="1" pin="B"/>
-<wire x1="137.16" y1="-99.06" x2="137.16" y2="-101.6" width="0.1524" layer="91"/>
-<wire x1="137.16" y1="-101.6" x2="93.98" y2="-101.6" width="0.1524" layer="91"/>
-<wire x1="93.98" y1="-101.6" x2="93.98" y2="-91.44" width="0.1524" layer="91"/>
-<wire x1="93.98" y1="-91.44" x2="33.02" y2="-91.44" width="0.1524" layer="91"/>
-<wire x1="33.02" y1="-91.44" x2="33.02" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="165.1" y1="-93.98" x2="33.02" y2="-93.98" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="-93.98" x2="33.02" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="(ICP)PD6"/>
 <wire x1="33.02" y1="48.26" x2="-10.16" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="R10" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$69" class="0">
 <segment>
-<pinref part="Q15" gate="1" pin="B"/>
-<wire x1="137.16" y1="-121.92" x2="137.16" y2="-127" width="0.1524" layer="91"/>
-<wire x1="137.16" y1="-127" x2="91.44" y2="-127" width="0.1524" layer="91"/>
-<wire x1="91.44" y1="-127" x2="91.44" y2="-93.98" width="0.1524" layer="91"/>
-<wire x1="91.44" y1="-93.98" x2="30.48" y2="-93.98" width="0.1524" layer="91"/>
-<wire x1="30.48" y1="-93.98" x2="30.48" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="-96.52" x2="30.48" y2="-96.52" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="-96.52" x2="30.48" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="45.72" x2="-12.7" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="-96.52" x2="104.14" y2="-124.46" width="0.1524" layer="91"/>
+<pinref part="R27" gate="G$1" pin="1"/>
+<wire x1="104.14" y1="-124.46" x2="165.1" y2="-124.46" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$70" class="0">
@@ -3002,6 +2877,144 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <wire x1="20.32" y1="66.04" x2="20.32" y2="-38.1" width="0.1524" layer="91"/>
 <wire x1="20.32" y1="-38.1" x2="-43.18" y2="-38.1" width="0.1524" layer="91"/>
 <pinref part="SW4" gate="G$1" pin="2"/>
+</segment>
+</net>
+<net name="N$44" class="0">
+<segment>
+<pinref part="SW3" gate="G$1" pin="1"/>
+<wire x1="-30.48" y1="-60.96" x2="-55.88" y2="-60.96" width="0.1524" layer="91"/>
+<pinref part="SW2" gate="G$1" pin="1"/>
+<wire x1="-38.1" y1="-53.34" x2="-55.88" y2="-53.34" width="0.1524" layer="91"/>
+<pinref part="SW1" gate="G$1" pin="1"/>
+<wire x1="-55.88" y1="-45.72" x2="-45.72" y2="-45.72" width="0.1524" layer="91"/>
+<pinref part="SW4" gate="G$1" pin="1"/>
+<wire x1="-53.34" y1="-38.1" x2="-55.88" y2="-38.1" width="0.1524" layer="91"/>
+<wire x1="-48.26" y1="88.9" x2="-55.88" y2="88.9" width="0.1524" layer="91"/>
+<pinref part="DIS1" gate="G$1" pin="GND"/>
+<wire x1="12.7" y1="127" x2="12.7" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="124.46" x2="2.54" y2="124.46" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="124.46" x2="2.54" y2="147.32" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="147.32" x2="-55.88" y2="147.32" width="0.1524" layer="91"/>
+<wire x1="-55.88" y1="147.32" x2="-55.88" y2="88.9" width="0.1524" layer="91"/>
+<junction x="-55.88" y="88.9"/>
+<wire x1="-55.88" y1="88.9" x2="-55.88" y2="10.16" width="0.1524" layer="91"/>
+<pinref part="SV1" gate="G$1" pin="1"/>
+<wire x1="-40.64" y1="15.24" x2="-38.1" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="-38.1" y1="15.24" x2="-38.1" y2="10.16" width="0.1524" layer="91"/>
+<wire x1="-38.1" y1="10.16" x2="-55.88" y2="10.16" width="0.1524" layer="91"/>
+<junction x="-55.88" y="10.16"/>
+<wire x1="-55.88" y1="10.16" x2="-55.88" y2="-38.1" width="0.1524" layer="91"/>
+<junction x="-55.88" y="-38.1"/>
+<wire x1="-55.88" y1="-38.1" x2="-55.88" y2="-45.72" width="0.1524" layer="91"/>
+<junction x="-55.88" y="-45.72"/>
+<wire x1="-55.88" y1="-45.72" x2="-55.88" y2="-53.34" width="0.1524" layer="91"/>
+<junction x="-55.88" y="-53.34"/>
+<wire x1="-55.88" y1="-53.34" x2="-55.88" y2="-60.96" width="0.1524" layer="91"/>
+<junction x="-55.88" y="-60.96"/>
+<wire x1="-55.88" y1="-60.96" x2="-55.88" y2="-76.2" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="-76.2" x2="-55.88" y2="-76.2" width="0.1524" layer="91"/>
+<pinref part="IR1" gate="A" pin="GND"/>
+<wire x1="30.48" y1="-121.92" x2="25.4" y2="-121.92" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="-121.92" x2="25.4" y2="-76.2" width="0.1524" layer="91"/>
+<junction x="25.4" y="-76.2"/>
+<pinref part="Q11" gate="1" pin="E"/>
+<wire x1="193.04" y1="-76.2" x2="193.04" y2="-58.42" width="0.1524" layer="91"/>
+<pinref part="Q12" gate="1" pin="E"/>
+<wire x1="236.22" y1="-71.12" x2="236.22" y2="-76.2" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="-76.2" x2="193.04" y2="-76.2" width="0.1524" layer="91"/>
+<junction x="193.04" y="-76.2"/>
+<wire x1="193.04" y1="-76.2" x2="228.6" y2="-76.2" width="0.1524" layer="91"/>
+<wire x1="193.04" y1="-76.2" x2="154.94" y2="-76.2" width="0.1524" layer="91"/>
+<pinref part="Q10" gate="1" pin="E"/>
+<wire x1="154.94" y1="-76.2" x2="149.86" y2="-76.2" width="0.1524" layer="91"/>
+<wire x1="149.86" y1="-48.26" x2="149.86" y2="-76.2" width="0.1524" layer="91"/>
+<junction x="149.86" y="-76.2"/>
+<pinref part="Q9" gate="1" pin="E"/>
+<wire x1="106.68" y1="-40.64" x2="106.68" y2="-76.2" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="-76.2" x2="149.86" y2="-76.2" width="0.1524" layer="91"/>
+<junction x="106.68" y="-76.2"/>
+<wire x1="106.68" y1="-76.2" x2="96.52" y2="-76.2" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="-76.2" x2="60.96" y2="-76.2" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="-76.2" x2="25.4" y2="-76.2" width="0.1524" layer="91"/>
+<pinref part="IR2" gate="A" pin="GND"/>
+<wire x1="68.58" y1="-121.92" x2="60.96" y2="-121.92" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="-121.92" x2="60.96" y2="-76.2" width="0.1524" layer="91"/>
+<junction x="60.96" y="-76.2"/>
+<pinref part="Q17" gate="1" pin="E"/>
+<wire x1="177.8" y1="-132.08" x2="96.52" y2="-132.08" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="-132.08" x2="96.52" y2="-76.2" width="0.1524" layer="91"/>
+<junction x="96.52" y="-76.2"/>
+<pinref part="Q13" gate="1" pin="E"/>
+<wire x1="177.8" y1="-101.6" x2="154.94" y2="-101.6" width="0.1524" layer="91"/>
+<wire x1="154.94" y1="-101.6" x2="154.94" y2="-76.2" width="0.1524" layer="91"/>
+<junction x="154.94" y="-76.2"/>
+</segment>
+</net>
+<net name="N$45" class="0">
+<segment>
+<pinref part="R16" gate="G$1" pin="1"/>
+<pinref part="Q14" gate="1" pin="C"/>
+<wire x1="208.28" y1="-132.08" x2="203.2" y2="-132.08" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$51" class="0">
+<segment>
+<pinref part="Q17" gate="1" pin="C"/>
+<pinref part="Q14" gate="1" pin="E"/>
+<wire x1="187.96" y1="-132.08" x2="193.04" y2="-132.08" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$57" class="0">
+<segment>
+<pinref part="LED4" gate="G$1" pin="C"/>
+<wire x1="223.52" y1="-101.6" x2="218.44" y2="-101.6" width="0.1524" layer="91"/>
+<pinref part="R15" gate="G$1" pin="2"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="R25" gate="G$1" pin="2"/>
+<pinref part="Q16" gate="1" pin="B"/>
+<wire x1="175.26" y1="-83.82" x2="198.12" y2="-83.82" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="-83.82" x2="198.12" y2="-96.52" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$43" class="0">
+<segment>
+<pinref part="R26" gate="G$1" pin="2"/>
+<pinref part="Q14" gate="1" pin="B"/>
+<wire x1="175.26" y1="-114.3" x2="198.12" y2="-114.3" width="0.1524" layer="91"/>
+<wire x1="198.12" y1="-114.3" x2="198.12" y2="-127" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$52" class="0">
+<segment>
+<pinref part="Q13" gate="1" pin="B"/>
+<wire x1="182.88" y1="-96.52" x2="182.88" y2="-93.98" width="0.1524" layer="91"/>
+<pinref part="R10" gate="G$1" pin="2"/>
+<wire x1="182.88" y1="-93.98" x2="175.26" y2="-93.98" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$67" class="0">
+<segment>
+<pinref part="Q17" gate="1" pin="B"/>
+<wire x1="182.88" y1="-127" x2="182.88" y2="-124.46" width="0.1524" layer="91"/>
+<pinref part="R27" gate="G$1" pin="2"/>
+<wire x1="182.88" y1="-124.46" x2="175.26" y2="-124.46" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$75" class="0">
+<segment>
+<pinref part="R15" gate="G$1" pin="1"/>
+<pinref part="Q16" gate="1" pin="C"/>
+<wire x1="208.28" y1="-101.6" x2="203.2" y2="-101.6" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$76" class="0">
+<segment>
+<pinref part="Q16" gate="1" pin="E"/>
+<pinref part="Q13" gate="1" pin="C"/>
+<wire x1="193.04" y1="-101.6" x2="187.96" y2="-101.6" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
