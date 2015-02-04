@@ -23,7 +23,7 @@ static volatile uint32_t actualTime = GAP_TIME + 1;
 static volatile uint32_t startTimeTSOP = 0;
 static volatile uint32_t stopTimeTSOP = 0;
 
-static volatile bool freezeDisplayTime = false;
+static volatile bool freezeDisplayTime = true;
 
 #define DEB0 PA0
 #define DEB1 PA1
@@ -226,8 +226,8 @@ int main(void)
 	addTask(2, 40, checkButtonTask, NULL);
 	addTask(3, 20, TSOPCheckTask, NULL);
 	
-	setValueToDisplay(0, 3);    //DEBUG //dlaczego to jest w ogole potrzebne?!?!??!!?
-	                                    //dlaczego czasy inne na uarcie i wyswietlaczu skoro zmienne volatile
+	//setValueToDisplay(0, 3);    //DEBUG //dlaczego to jest w ogole potrzebne?!?!??!!?
+	                                    //dlaczego czasy inne na uarcie i wyswietlaczu skoro zmienne volatile przy -Os
 
     _delay_ms(1000);
 	LCD_Clear();
