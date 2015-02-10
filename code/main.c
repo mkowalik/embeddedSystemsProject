@@ -25,18 +25,6 @@ static volatile uint32_t stopTimeTSOP = 0;
 
 static volatile bool freezeDisplayTime = true;
 
-#define DEB0 PA0
-#define DEB1 PA1
-#define DEB2 PD4
-
-/**
- * Timer0 interrupt handler - for task manager. Called every 1ms.
- * */
-
-ISR(TIMER0_COMP_vect){
-	schedule();
-}
-
 /**
  * Setup Atmega32's Timer0 (8-bit) for interrupts every 1ms
  * */
@@ -189,6 +177,16 @@ void IrLEDinit(){
     IR_LED_PORT &= ~(_BV(IR_LED_1_PIN));
 }
 
+
+/**
+ * Timer0 interrupt handler - for task manager. Called every 1ms.
+ * */
+
+ISR(TIMER0_COMP_vect){
+	schedule();
+	changeDisplayTask(NULL);
+}
+
 /**
  * Main function.
  * */
@@ -221,7 +219,7 @@ int main(void)
 
 	initUART();
 
-	addTask(0, 4, changeDisplayTask, NULL);
+	//addTask(0, 4, changeDisplayTask, NULL);
 	addTask(1, 10, incrementTimeTask, NULL);
 	addTask(2, 40, checkButtonTask, NULL);
 	addTask(3, 20, TSOPCheckTask, NULL);
