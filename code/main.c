@@ -71,7 +71,7 @@ void changeDisplayTask(void* args){
 void incrementTimeTask(void* args){
     actualTime++;
     if (!freezeDisplayTime) setValueToDisplay(actualTime - startTimeTSOP, 2); //if object is between first and second gate
-    else setValueToDisplay(stopTimeTSOP - startTimeTSOP, 2);    //TEGO TU NIE POWINNO BYC, A JEDNAK JEST POTRZEBNE A I TAK NIC NIE DAJE
+    else setValueToDisplay(stopTimeTSOP - startTimeTSOP, 2);  
 }
 
 /**
@@ -194,13 +194,6 @@ ISR(TIMER0_COMP_vect){
 int main(void)
 {
 
-    DDRD |= _BV(DEB2);   //DEBUG
-    DDRA |= _BV(DEB0);   //DEBUG
-    DDRA |= _BV(DEB1);   //DEBUG
-    PORTD |= _BV(DEB2);   //DEBUG
-    PORTA |= _BV(DEB0);   //DEBUG
-    PORTA |= _BV(DEB1);   //DEBUG
-
 	setupTimer0();
 	setupTimer2();
 
@@ -224,9 +217,6 @@ int main(void)
 	addTask(2, 40, checkButtonTask, NULL);
 	addTask(3, 20, TSOPCheckTask, NULL);
 	
-	//setValueToDisplay(0, 3);    //DEBUG //dlaczego to jest w ogole potrzebne?!?!??!!?
-	                                    //dlaczego czasy inne na uarcie i wyswietlaczu skoro zmienne volatile przy -Os
-
     _delay_ms(1000);
 	LCD_Clear();
 	displayMenu(0,0);

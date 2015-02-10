@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "segmentDisplay.h"
 
+/*digits and dot*/
 static uint8_t DIGIT[10] = {0b11000000, 0b11111001, 0b10100100, 0b10110000, 0b10011001, 0b10010010, 0b10000010, 0b11111000, 0b10000000, 0b10010000};
 static uint8_t DOT = 0b01111111;
 
@@ -23,7 +24,7 @@ static void displayDigit(uint8_t displayNr, bool dot, uint8_t value){
 	
 }
 
-void segmentDisplayInit(){ //do poprawy
+void segmentDisplayInit(){ 
 	DISPLAY_DDR = 0xFF;
 	DISPLAY_PORT = 0x0;
 	DISPLAY_GRD_DDR = DISPLAY_GRD_DDR | 0x0F;

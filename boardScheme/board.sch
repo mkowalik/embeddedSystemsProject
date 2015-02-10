@@ -2047,7 +2047,7 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <part name="Q14" library="transistor-small-signal" deviceset="BC547" device=""/>
 <part name="LED4" library="eagle-ltspice" deviceset="LED_E" device=""/>
 <part name="LED5" library="eagle-ltspice" deviceset="LED_E" device=""/>
-<part name="SV1" library="con-lstb" deviceset="MA03-1" device=""/>
+<part name="UART" library="con-lstb" deviceset="MA03-1" device=""/>
 <part name="R1" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
 <part name="R2" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
 <part name="R3" library="eagle-ltspice" deviceset="R" device="0204/7" value="10K"/>
@@ -2110,7 +2110,7 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <instance part="Q14" gate="1" x="198.12" y="-129.54" rot="R270"/>
 <instance part="LED4" gate="G$1" x="228.6" y="-101.6" rot="R270"/>
 <instance part="LED5" gate="G$1" x="228.6" y="-132.08" rot="R270"/>
-<instance part="SV1" gate="G$1" x="-48.26" y="17.78"/>
+<instance part="UART" gate="G$1" x="-50.8" y="17.78"/>
 <instance part="R1" gate="G$1" x="5.08" y="78.74"/>
 <instance part="R2" gate="G$1" x="17.78" y="81.28"/>
 <instance part="R3" gate="G$1" x="30.48" y="83.82"/>
@@ -2151,8 +2151,8 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <segment>
 <wire x1="-12.7" y1="35.56" x2="0" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="0" y1="35.56" x2="0" y2="17.78" width="0.1524" layer="91"/>
-<wire x1="0" y1="17.78" x2="-40.64" y2="17.78" width="0.1524" layer="91"/>
-<pinref part="SV1" gate="G$1" pin="2"/>
+<wire x1="0" y1="17.78" x2="-43.18" y2="17.78" width="0.1524" layer="91"/>
+<pinref part="UART" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -2160,8 +2160,8 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <pinref part="IC1" gate="G$1" pin="(RXD)PD0"/>
 <wire x1="-10.16" y1="33.02" x2="-2.54" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="-2.54" y1="33.02" x2="-2.54" y2="20.32" width="0.1524" layer="91"/>
-<wire x1="-2.54" y1="20.32" x2="-40.64" y2="20.32" width="0.1524" layer="91"/>
-<pinref part="SV1" gate="G$1" pin="3"/>
+<wire x1="-2.54" y1="20.32" x2="-43.18" y2="20.32" width="0.1524" layer="91"/>
+<pinref part="UART" gate="G$1" pin="3"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -2898,8 +2898,8 @@ Source: www.cotorelay.com .. Coto_Technology__CT10-1530-G1.pdf</description>
 <wire x1="-55.88" y1="147.32" x2="-55.88" y2="88.9" width="0.1524" layer="91"/>
 <junction x="-55.88" y="88.9"/>
 <wire x1="-55.88" y1="88.9" x2="-55.88" y2="10.16" width="0.1524" layer="91"/>
-<pinref part="SV1" gate="G$1" pin="1"/>
-<wire x1="-40.64" y1="15.24" x2="-38.1" y2="15.24" width="0.1524" layer="91"/>
+<pinref part="UART" gate="G$1" pin="1"/>
+<wire x1="-43.18" y1="15.24" x2="-38.1" y2="15.24" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="15.24" x2="-38.1" y2="10.16" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="10.16" x2="-55.88" y2="10.16" width="0.1524" layer="91"/>
 <junction x="-55.88" y="10.16"/>
