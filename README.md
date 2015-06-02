@@ -1,3 +1,3 @@
-# ukladySterujaceProjekt
-Projekt bramki na podczerwień na przedmiot Układy Sterujące.
-Wykonanie: Michał Kowalik, Adrianna Borowa
+# embeddedSystemsProject
+Project of the IR gate made for course "Układy Sterujące" on MC2 specialisation on Jagiellonian University.
+Authors: Michał Kowalik, Adrianna Borowa
